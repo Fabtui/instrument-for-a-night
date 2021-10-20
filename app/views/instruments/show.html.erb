@@ -4,3 +4,7 @@
 <h2><%= @instrument.user.nickname %></h2>
 <h2><%= @instrument.user.location %></h2>
 <h2>Rent for <%= @instrument.price_per_day %>€ per day</h2>
+
+<% @instrument.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
