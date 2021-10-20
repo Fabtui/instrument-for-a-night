@@ -4,6 +4,8 @@ Instrument.destroy_all
 User.create!(
   email: "toto@mail.com",
   password: "azerty",
+  nickname: "Toto",
+  location: "16 Rue de la république, 69002 Lyon"
 )
 
 Instrument.create!(
@@ -18,4 +20,4 @@ Instrument.create!(
 )
 
 puts "#{User.count} Users created"
-puts "#{Instruments.count} Instrumentss created"
+puts "#{Instrument.count} Instrumentss created"
