@@ -1,0 +1,17 @@
+<form action="instruments" method="get">
+  <div class="product-search">
+      <div class="search-element">
+            <label class="search-label">Instrument ?</label>
+            <datalist id="suggestions">
+                <option>Guitar</option>
+                <option>Bass</option>
+            </datalist>
+          <input class="search-input" list="suggestions" placeholder="Guitar" autocomplete="on" name="search[instrument]">
+      </div>
+      <div class="search-element">
+          <label class="search-label">Place ?</label>
+          <input class="search-input" type="text" placeholder="Lyon" class="" autocomplete="on" name="search[location]">
+      </div>
+      <input type="submit" name="commit" class="search-button"></a>
+  </div>
+</form>
