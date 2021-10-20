@@ -1,0 +1,15 @@
+<hr>
+<hr>
+<hr>
+
+<% @instruments.each do |instrument| %>
+  <h4><%= instrument.instrument_type.instrument_type %></h4>
+  <%= link_to instrument_path(instrument.id) do %>
+  <h1><%= instrument.brand.capitalize %> <%= instrument.name.capitalize %> <%= instrument.year %></h1>
+  <% end %>
+
+  <% link_to instrument.brand.capitalize, instrument_path(instrument.id) %>
+
+  <h4><%= instrument.description %></h4>
+  <h2><%= instrument.price_per_day %>€</h2>
+<% end %>
