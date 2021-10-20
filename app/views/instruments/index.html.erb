@@ -12,7 +12,8 @@
     <% link_to instrument.brand.capitalize, instrument_path(instrument.id) %>
 
     <h4><%= instrument.description %></h4>
-    <h2><%= instrument.price_per_day %>€</h2>
+    <h2>Rent for <%= instrument.price_per_day %>€ per day</h2>
+    <h2><%= instrument.user.nickname %></h2>
     <hr>
   <% end %>
 <% end %>
