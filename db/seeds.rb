@@ -1,7 +1,7 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+InstrumentType.destroy_all
+
+instrument_types = %w(Guitar Bass Drum Acoustic\ Guitar)
+
+instrument_types.each do |instrument_type|
+  InstrumentType.create!(instrument_type: instrument_type)
+end
