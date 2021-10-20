@@ -15,16 +15,10 @@ ActiveRecord::Schema.define(version: 2021_10_20_103346) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "instrument_types", force: :cascade do |t|
-    t.string "instrument_type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "instruments", force: :cascade do |t|
-    t.bigint "instrument_type_id", null: false
     t.bigint "user_id", null: false
     t.string "name"
+    t.string "instrument_type"
     t.string "brand"
     t.string "description"
     t.integer "year"
@@ -32,7 +26,6 @@ ActiveRecord::Schema.define(version: 2021_10_20_103346) do
     t.boolean "for_rent", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["instrument_type_id"], name: "index_instruments_on_instrument_type_id"
     t.index ["user_id"], name: "index_instruments_on_user_id"
   end
 
@@ -48,6 +41,5 @@ ActiveRecord::Schema.define(version: 2021_10_20_103346) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "instruments", "instrument_types"
   add_foreign_key "instruments", "users"
 end
