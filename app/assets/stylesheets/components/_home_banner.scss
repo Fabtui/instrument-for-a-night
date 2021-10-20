@@ -1,0 +1,31 @@
+.banner {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  box-shadow: 6px 6px 6px 6px rgba(30, 29, 31, 0.87);
+}
+
+.banner-content-container {
+  position: absolute;
+  bottom: 0;
+  margin: 0px 10%;
+}
+
+.banner h1 {
+  font-size: 32px;
+  color: #fcedd8;
+  font-family: 'Helvetica';
+  letter-spacing: 8px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.603);
+}
+
+
+.banner p {
+  font-size: 30px;
+  color: white;
+  opacity: .7;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.596);
+}

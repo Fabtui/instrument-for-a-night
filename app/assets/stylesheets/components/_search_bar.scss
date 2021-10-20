@@ -1,0 +1,75 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+.product-search {
+  width: 50%;
+  left: 25%;
+  min-width: 400px;
+  display: flex;
+  align-items: center;
+  background: rgb(240,240,240);
+  border-radius: 10px;
+  margin: 0 auto;
+  box-shadow: rgba(0,0,0,.172549) 0 6px 12px 0;
+  cursor: pointer;
+  transform: translateY(180px);
+  transition: all 0.1s;
+  z-index: 99;
+}
+
+.search-element {
+  display: flex;
+  flex-grow: 2;
+  flex-direction: column;
+  border-right: 1px solid rgba(10,10,10,.1);
+  padding: 9px;
+}
+
+.search-label {
+  margin: 0;
+  color: black;
+  font-weight: 700;
+}
+
+.search-input {
+  background: rgb(240,240,240);
+  border: none;
+  appearance: none;
+  outline: none;
+  width: 100%;
+  font-size: 1.2em;
+  line-height: 1.2em;
+}
+
+.search-input:focus {
+  box-shadow: 0px 2px 0px 0px #EC1C24;
+}
+
+.search-button {
+  display: inline-block;
+  flex-grow: 1;
+  height: 66px;
+  line-height: 40px;
+  padding: 12px 20px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 100;
+  border: 0;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: white;
+  background-color: #EC1C24;
+  transition: background-color 0.5s ease;
+}
+
+.search-button:hover {
+  background-color: HSLA(345, 100%, 60%, 1.00);
+  text-decoration: none;
+  color: white;
+}
+
+.scrolled {
+  transform: translateY(8px) scale(0.8);
+  position: fixed;
+}
