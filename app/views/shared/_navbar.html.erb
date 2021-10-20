@@ -15,8 +15,8 @@
           <%= current_user.nickname %>
         </li>
         <li class="nav-item dropdown">
-        <% if current_user.photo.attached? %>
-          <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false  %>
+        <% if current_user.avatar.attached? %>
+          <%= cl_image_tag current_user.avatar.key, class: "avatar dropdown-toggle", id: "navbarDropdown", :gravity=>"faces", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false  %>
         <% else %>
           <%= image_tag "https://s2.qwant.com/thumbr/0x380/6/3/c8580b7fb17c87e8b9c17ea690f83b5911d042e960b2c4ee0e8372ab760750/img_206976.png?u=https%3A%2F%2Fcdn.onlinewebfonts.com%2Fsvg%2Fimg_206976.png&q=0&b=1&p=0&a=0", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <% end %>
