@@ -1,9 +1,9 @@
 class CreateInstruments < ActiveRecord::Migration[6.1]
   def change
     create_table :instruments do |t|
-      t.references :instrument_type, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: true
       t.string :name
+      t.string :instrument_type
       t.string :brand
       t.string :description
       t.integer :year

@@ -1,0 +1,31 @@
+<br>
+<h1>MY INSTRUMENTS</h1>
+<hr>
+<%= link_to "New intrument", new_instrument_path, class:"btn btn-primary" %>
+
+<hr>
+
+<% if @owned_instruments.count > 0 %>
+  <% @owned_instruments.each do |instrument| %>
+    <h4><%= instrument.instrument_type %></h4>
+    <%= link_to instrument_path(instrument.id) do %>
+    <h1><%= instrument.brand.capitalize %> <%= instrument.name.capitalize %> <%= instrument.year %></h1>
+    <% end %>
+
+    <% link_to instrument.brand.capitalize, instrument_path(instrument.id) %>
+
+    <h4><%= instrument.description %></h4>
+  <br>
+    <% if instrument.for_rent %>
+    <h2>Currently avaible for rent for:</h2>
+      <h2><%= instrument.price_per_day %>€ per day</h2>
+    <% else %>
+    <h2>No avaible for rent</h2>
+    <% end %>
+  <%= link_to "Edit this intrument", edit_instrument_path(instrument.id), class:"btn btn-success" %>
+  <%= link_to "Remove this intrument", instrument_path(instrument.id), class:"btn btn-danger", method: 'delete' %>
+  <hr>
+  <% end %>
+  <% else %>
+  <h1>No instrument added</h1>
+<% end %>

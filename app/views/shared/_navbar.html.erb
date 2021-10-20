@@ -15,7 +15,7 @@
           <%= image_tag "https://s2.qwant.com/thumbr/0x380/6/3/c8580b7fb17c87e8b9c17ea690f83b5911d042e960b2c4ee0e8372ab760750/img_206976.png?u=https%3A%2F%2Fcdn.onlinewebfonts.com%2Fsvg%2Fimg_206976.png&q=0&b=1&p=0&a=0", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Messages", "#", class: "dropdown-item" %>
-            <%= link_to "My instruments", "#", class: "dropdown-item" %>
+            <%= link_to "My instruments", instruments_owned_path, class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
