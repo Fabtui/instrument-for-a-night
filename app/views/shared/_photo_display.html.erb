@@ -1,0 +1,11 @@
+<div class="photo_display_container">
+  <div class="photo_display_big">
+  </div>
+  <div class="photo_display_thumb">
+  <% @instrument.photos.each do |photo| %>
+  <div class="photo_display_tiny">
+    <%= cl_image_tag photo.key, height: 150, width: 200, crop: :fill %>
+  </div>
+  <% end %>
+  </div>
+</div>
