@@ -1,0 +1,17 @@
+<% @instruments = Instrument.all %>
+
+<div class="items">
+<% @instruments.each do |instrument| %>
+  <% if instrument.photos.attached? %>
+    <div class="item">
+        <%= cl_image_tag instrument.photos.first.key, crop: :fill %>
+      <div class="item-infos">
+        <%= link_to instrument_path(instrument) do %>
+          <h1><%= instrument.brand %> <%= instrument.name %> <%= instrument.year %></h1>
+          <h2>Rent me for <%= instrument.price_per_day %>€ per day</h2>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+</div>
