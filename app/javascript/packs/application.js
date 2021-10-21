@@ -10,6 +10,8 @@ import "channels"
 import { showNavbar } from "../components/navbar"
 import { moveSearchbar } from "../components/search_bar"
 import { photoDisplay } from "../components/photo_display"
+import { homeCarousel } from "../components/home_carousel"
+import { searchButton } from "../components/search_button"
 
 Rails.start()
 Turbolinks.start()
@@ -31,6 +33,8 @@ document.addEventListener('turbolinks:load', () => {
   moveSearchbar();
   showNavbar();
   photoDisplay();
+  homeCarousel();
+  searchButton();
   // Call your functions here, e.g:
   // initSelect2();
 });
