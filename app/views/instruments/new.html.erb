@@ -7,7 +7,7 @@
   <%= f.input :description, as: :text %>
   <%= f.input :year, collection: 1950..Date.today.year %>
   <%= f.input :price_per_day, hint:"in euros" %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true }, hint:"This will be the main picture"  %>
   <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.input :photos, as: :file, input_html: { multiple: true } %>
