@@ -9,7 +9,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import { showNavbar } from "../components/navbar"
 import { moveSearchbar } from "../components/search_bar"
-
+import { photoDisplay } from "../components/photo_display"
 
 Rails.start()
 Turbolinks.start()
@@ -30,6 +30,7 @@ import "bootstrap";
 document.addEventListener('turbolinks:load', () => {
   moveSearchbar();
   showNavbar();
+  photoDisplay();
   // Call your functions here, e.g:
   // initSelect2();
 });
