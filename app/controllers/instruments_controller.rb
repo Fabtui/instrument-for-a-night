@@ -1,24 +1,28 @@
 class InstrumentsController < ApplicationController
   def index
-  search = params[:search]
-  if search.present?
-    if search[:name].present? && search[:instrument_type].present? && search[:location].empty?
-      search_by_name
-    elsif search[:name].empty? && search[:instrument_type].present? && search[:location].empty?
-      search_by_type
-    elsif search[:name].present? && search[:instrument_type].present? && search[:location].empty?
-      search_by_name_type
-    elsif search[:name].empty? && search[:instrument_type].present? && search[:location].present?
-      search_by_type_location
-    elsif search[:name].empty? && search[:instrument_type].empty? && search[:location].present?
-      search_by_location
-    elsif search[:name].present? && search[:instrument_type].present? && search[:location].present?
-      search_by_name_type_location
+    search = params[:search]
+    if search.present?
+      if search[:name].present? && search[:instrument_type].present? && search[:location].blank?
+        search_by_name
+      elsif search[:name].blank? && search[:instrument_type].present? && search[:location].blank?
+        search_by_type
+      elsif search[:name].present? && search[:instrument_type].present? && search[:location].blank?
+        search_by_name_type
+      elsif search[:name].blank? && search[:instrument_type].present? && search[:location].present?
+        search_by_type_location
+      elsif search[:name].blank? && search[:instrument_type].blank? && search[:location].present?
+        search_by_location
+      elsif search[:name].present? && search[:instrument_type].blank? && search[:location].present?
+        search_by_name_location
+      elsif search[:name].present? && search[:instrument_type].present? && search[:location].present?
+        search_by_name_type_location
+      else
+        @instruments = Instrument.all
+      end
     else
       @instruments = Instrument.all
     end
   end
-end
 
   def show
     @instrument = Instrument.find(params[:id])
@@ -96,6 +100,13 @@ end
     instrument_type = Instrument.type_search(search[:instrument_type])
     instrument_location = Instrument.location_search(search[:location])
     @instruments = (instrument_type & instrument_location)
+  end
+
+  def search_by_name_location
+    search = params[:search]
+    instrument_name = Instrument.global_search(search[:name])
+    instrument_location = Instrument.location_search(search[:location])
+    @instruments = (instrument_name & instrument_location)
   end
 
   def search_by_name_type_location

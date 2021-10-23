@@ -5,11 +5,11 @@
   left: 25%;
   min-width: 400px;
   display: flex;
-  align-items: center;
+  // align-items: center;
   border-radius: 10px;
   margin: 0 auto;
   cursor: pointer;
-  transform: translateY(180px);
+  transform: translateY(300%);
   transition: all 0.1s;
   z-index: 99;
 }
@@ -43,6 +43,10 @@
 
 .search-input:focus {
   box-shadow: 0px 2px 0px 0px $red;
+}
+
+.search-input::placeholder {
+  color: rgba(0, 0, 0, 0.4);
 }
 
 .scrolled {

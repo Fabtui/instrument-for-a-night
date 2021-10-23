@@ -1,19 +1,23 @@
-<br>
-<br>
-<br>
+<%= render 'shared/search_bar' %>
 
-<% @instruments.each do |instrument| %>
-  <% if instrument.for_rent %>
-    <h4><%= instrument.instrument_type %></h4>
-    <%= link_to instrument_path(instrument.id) do %>
-    <h1><%= instrument.brand.capitalize %> <%= instrument.name.capitalize %> <%= instrument.year %></h1>
+<div class="instrument_index_result">
+  <% if @instruments.count > 0 %>
+    <% @instruments.each do |instrument| %>
+      <% if instrument.for_rent %>
+        <h4><%= instrument.instrument_type %></h4>
+        <%= link_to instrument_path(instrument.id) do %>
+        <h1><%= instrument.brand.capitalize %> <%= instrument.name.capitalize %> <%= instrument.year %></h1>
+        <% end %>
+
+        <% link_to instrument.brand.capitalize, instrument_path(instrument.id) %>
+
+        <h4><%= instrument.description %></h4>
+        <h2>Rent for <%= instrument.price_per_day %>€ per day</h2>
+        <h2><%= instrument.user.nickname %></h2>
+        <hr>
+      <% end %>
     <% end %>
-
-    <% link_to instrument.brand.capitalize, instrument_path(instrument.id) %>
-
-    <h4><%= instrument.description %></h4>
-    <h2>Rent for <%= instrument.price_per_day %>€ per day</h2>
-    <h2><%= instrument.user.nickname %></h2>
-    <hr>
+  <% else %>
+    <h1>No instrument found</h1>
   <% end %>
-<% end %>
+</div>
