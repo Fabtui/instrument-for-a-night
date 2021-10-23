@@ -47,17 +47,17 @@
     border: 2px solid rgb(220, 220, 220);
     border-radius: 50%;
     transition: all 0.2s;
-    background-color: rgb(240, 240, 240);
+    background-color: rgba(240, 240, 240, 0.3);
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.205);
   }
   &:hover {
     background-color: transparent;
   i {
-    background-color: rgb(20, 20, 20);
+    background-color: $red;
     transition: all 0.2s;
     transform: scale(1.2);
     color: rgb(240, 240, 240);
-    border: 2px solid rgb(20, 20, 20);
+    border: 2px solid $red;
 
   }
   }

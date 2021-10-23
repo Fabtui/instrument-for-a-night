@@ -1,13 +1,16 @@
 <form action="instruments" method="get">
   <div class="product-search">
-    <div id="search-instrument" class="search-element">
+    <div id="search-type" class="search-element">
           <datalist id="suggestions">
               <option>Electric Guitar</option>
               <option>Acoustic Guitar</option>
               <option>Bass</option>
               <option>Drum</option>
           </datalist>
-        <input class="search-input" list="suggestions" placeholder="Guitar" autocomplete="on" name="search[instrument]">
+        <input class="search-input" list="suggestions" placeholder="Guitar" autocomplete="on" name="search[instrument_type]">
+    </div>
+    <div id="search-name" class="search-element">
+        <input class="search-input" type="text" placeholder="Stratocaster" class="" autocomplete="on" name="search[name]">
     </div>
     <div id="search-place" class="search-element">
         <input class="search-input" type="text" placeholder="Lyon" class="" autocomplete="on" name="search[location]">

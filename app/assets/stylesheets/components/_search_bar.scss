@@ -42,7 +42,7 @@
 }
 
 .search-input:focus {
-  box-shadow: 0px 2px 0px 0px #EC1C24;
+  box-shadow: 0px 2px 0px 0px $red;
 }
 
 .scrolled {
@@ -50,7 +50,7 @@
   position: fixed;
 }
 
-#search-instrument {
+#search-type {
   border-radius: 20px 0 0 20px;
 }
 
@@ -74,8 +74,8 @@
 }
 
 #search:hover {
-  background-color:#EB1C24;
-  border: 1px solid #EB1C24;
+  background-color:$red;
+  border: 1px solid $red;
   border-radius: 50%;
   color: white;
   cursor: pointer;
