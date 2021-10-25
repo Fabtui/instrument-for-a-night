@@ -1,8 +1,13 @@
-<h1><%= @instrument.brand.capitalize %> <%= @instrument.name.capitalize %> <%= @instrument.year %></h1>
-<h4><%= @instrument.instrument_type %></h4>
-<h4><%= @instrument.description %></h4>
-<h2><%= @instrument.user.nickname %></h2>
-<h2><%= @instrument.user.location %></h2>
-<h2>Rent for <%= @instrument.price_per_day %>€ per day</h2>
-
-<%= render 'shared/photo_display' %>
+<div class="instrument-show-container">
+  <div class="instrument-show-left">
+    <h1><%= @instrument.brand.capitalize %> <%= @instrument.name.capitalize %> <%= @instrument.year %></h1>
+    <h4><%= @instrument.instrument_type %></h4>
+    <h4><%= @instrument.description %></h4>
+    <h2><%= @instrument.user.nickname %></h2>
+    <h2><%= @instrument.user.location %></h2>
+    <h2>Rent for <%= @instrument.price_per_day %>€ per day</h2>
+  </div>
+  <div class="instrument-show-right">
+    <%= render 'shared/photo_display' %>
+  </div>
+</div>
