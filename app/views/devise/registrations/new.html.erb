@@ -32,35 +32,5 @@
     <%= f.button :submit, "Sign up" %>
   </div>
 <% end %>
-=======
-    <div class="form-inputs">
-      <%= f.input :email,
-                  required: true,
-                  autofocus: true,
-                  input_html: { autocomplete: "email" }%>
-      <%= f.input :password,
-                  required: true,
-                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                  input_html: { autocomplete: "new-password" } %>
-      <%= f.input :password_confirmation,
-                  required: true,
-                  input_html: { autocomplete: "new-password" } %>
-      <%= f.input :nickname,
-                  required: true,
-                  autofocus: true,
-                  input_html: { autocomplete: "nickname" }%>
-      <%= f.input :location,
-                  required: true,
-                  autofocus: true,
-                  input_html: { autocomplete: "location" }%>
-      <%= f.input :avatar, as: :file %>
-    </div>
-
-    <div class="form-actions">
-      <%= f.button :submit, "Sign up", class:"btn btn-primary" %>
-    </div>
-  <% end %>
->>>>>>> dca471568dd9e87e1e06cbd7f1417747c9645e49
-
   <%= render "devise/shared/links" %>
 </div>
