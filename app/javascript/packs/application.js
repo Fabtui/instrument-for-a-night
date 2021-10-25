@@ -12,6 +12,7 @@ import { moveSearchbar } from "../components/search_bar"
 import { photoDisplay } from "../components/photo_display"
 import { homeCarousel } from "../components/home_carousel"
 import { searchButton } from "../components/search_button"
+import { previewImageOnFileSelect } from "../components/profile_pic_preview"
 
 Rails.start()
 Turbolinks.start()
@@ -35,6 +36,7 @@ document.addEventListener('turbolinks:load', () => {
   photoDisplay();
   homeCarousel();
   searchButton();
+  previewImageOnFileSelect();
   // Call your functions here, e.g:
   // initSelect2();
 });
