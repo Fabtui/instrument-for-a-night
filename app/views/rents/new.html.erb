@@ -1,0 +1,21 @@
+<div class="new-container">
+  <h1 id="price" data-price-per-day="<%=@instrument.price_per_day%>">Rent <%= @instrument.user.nickname %>'s <%= @instrument.brand %> <%= @instrument.name %></h1>
+  <hr>
+
+<%= simple_form_for [@instrument, @rent] do |f| %>
+  <h2>Date de début</h2>
+  <%= f.datetime_field :start_time, as: :date%>
+  <h2>Date de fin</h2>
+  <%= f.datetime_field :end_time, as: :date%>
+  <hr>
+  <% if current_user %>
+    <%= f.submit 'Rent', class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to "Login", new_user_session_path, class: "btn btn-primary" %>
+  <% end %>
+  <hr>
+  <%= link_to 'Back', instruments_path, class: "btn btn-warning"  %>
+<% end %>
+
+    <hr>
+</div>
