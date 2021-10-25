@@ -21,24 +21,24 @@
           <%= image_tag "https://s2.qwant.com/thumbr/0x380/6/3/c8580b7fb17c87e8b9c17ea690f83b5911d042e960b2c4ee0e8372ab760750/img_206976.png?u=https%3A%2F%2Fcdn.onlinewebfonts.com%2Fsvg%2Fimg_206976.png&q=0&b=1&p=0&a=0", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <% end %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to instruments_owned_path, class: "dropdown-item" do %>
+            <%= link_to instruments_owned_path, class: "dropdown-item item1" do %>
               <i class="fas fa-guitar"></i>
             <% end %>
-            <%= link_to "#", class: "dropdown-item" do %>
+            <%= link_to "#", class: "dropdown-item item2" do %>
               <i class="far fa-envelope"></i>
             <% end %>
-            <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
+            <%= link_to edit_user_registration_path, class: "dropdown-item item3" do %>
               <i class="fas fa-cog"></i>
             <% end %>
-            <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
+            <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item item4" do %>
               <i class="fas fa-sign-out-alt"></i>
             <% end %>
           </div>
         </li>
       <% else %>
-        <li class="nav-item">
+        <li class="nav-item unsigned">
           <%= link_to new_user_session_path, class: "nav-link" do %>
-            <i class="fas fa-sign-out-alt"></i>
+            <i class="fas fa-sign-in-alt"></i>
           <% end %>
         </li>
       <% end %>

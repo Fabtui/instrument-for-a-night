@@ -37,6 +37,7 @@
 }
 
 .dropdown-item {
+  display: block;
   transform: translateX(18px);
   background-color: transparent;
   margin: 12px 0;
@@ -61,4 +62,12 @@
 
   }
   }
+}
+
+.unsigned i {
+  font-size: 24px;
+  padding: 12px;
+  border-radius: 50%;
+  transition: all 0.2s;
+  background-color: white;
 }
