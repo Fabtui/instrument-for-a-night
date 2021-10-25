@@ -6,15 +6,17 @@
     <div class="photo_display_thumb">
       <% i = 0 %>
       <% @instrument.photos.each do |photo| %>
-      <div class="photo_display_tiny">
         <% if i > 0 %>
-          <%= cl_image_tag photo.key, crop: :fill, id:"picture-#{i}", class:"" %>
+      <div class="photo_display_tiny">
+          <%= cl_image_tag photo.key, crop: :fill, id:"picture", class:"" %>
           <% i += 1 %>
-        <% else %>
-          <%= cl_image_tag photo.key, crop: :fill, id:"picture-#{i}", class:"active" %>
-          <% i += 1 %>
-        <% end %>
       </div>
+        <% else %>
+      <div class="photo_display_tiny">
+          <%= cl_image_tag photo.key, crop: :fill, id:"picture", class:"active" %>
+          <% i += 1 %>
+      </div>
+        <% end %>
       <% end %>
     </div>
   </div>
