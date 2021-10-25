@@ -9,6 +9,13 @@ class RentsController < ApplicationController
 
   def new
     @instrument = Instrument.find(params[:instrument_id])
+    @rents = Rent.where(instrument_id: @instrument.id)
+    @rents_dates = @rents.map do |rent|
+      {
+        from: rent.start_time,
+        to:   rent.end_time
+      }
+    end
     @rent = Rent.new
   end
 

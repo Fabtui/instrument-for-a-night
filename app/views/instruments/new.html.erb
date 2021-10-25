@@ -1,18 +1,17 @@
-<div class="sign_in_container">
-<h1>Add a new instrument</h1>
-<%= simple_form_for [@instrument] do |f| %>
-  <%= f.input :instrument_type, collection: ['Electric Guitar', 'Acoustic Guitar', 'Bass', 'Drum'] %>
-  <%= f.input :brand %>
-  <%= f.input :name %>
-  <%= f.input :description, as: :text %>
-  <%= f.input :year, collection: 1950..Date.today.year %>
-  <%= f.input :price_per_day, hint:"in euros" %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true }, hint:"This will be the main picture"  %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <%= f.input :for_rent %>
-  <%= f.submit "Save", class: "btn btn-primary" %>
-<% end %>
-  <hr>
+<div class="sign-in-container">
+  <h1>Add a new instrument</h1>
+  <%= simple_form_for [@instrument] do |f| %>
+    <%= f.input :instrument_type, collection: ['Electric Guitar', 'Acoustic Guitar', 'Bass', 'Drum'] %>
+    <%= f.input :brand %>
+    <%= f.input :name %>
+    <%= f.input :description, as: :text %>
+    <%= f.input :year, collection: 1950..Date.today.year %>
+    <%= f.input :price_per_day, hint:"in euros" %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true }, hint:"This will be the main picture"  %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    <%= f.input :for_rent %>
+    <%= f.submit "Save", class: "btn btn-primary" %>
+  <% end %>
 </div>
