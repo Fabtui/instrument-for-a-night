@@ -8,7 +8,7 @@
   overflow-y: hidden;
   white-space: nowrap;
   user-select: none;
-  cursor: pointer;
+  cursor: grab;
   transition: all 0.2s;
   will-change: transform;
   position: relative;
@@ -72,6 +72,7 @@
   left: 0;
 
   h1 {
+    cursor: pointer;
     font-size: 20px;
     position: absolute;
     bottom: 20px;
