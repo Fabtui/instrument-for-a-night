@@ -1,11 +1,19 @@
 <% if @instrument.photos.attached? %>
   <div class="photo_display_container">
     <div class="photo_display_big">
+      <%= cl_image_tag @instrument.photos.first.key, crop: :fill, id:"big-picture" %>
     </div>
     <div class="photo_display_thumb">
+      <% i = 0 %>
       <% @instrument.photos.each do |photo| %>
       <div class="photo_display_tiny">
-        <%= cl_image_tag photo.key, crop: :fill %>
+        <% if i > 0 %>
+          <%= cl_image_tag photo.key, crop: :fill, id:"picture-#{i}", class:"" %>
+          <% i += 1 %>
+        <% else %>
+          <%= cl_image_tag photo.key, crop: :fill, id:"picture-#{i}", class:"active" %>
+          <% i += 1 %>
+        <% end %>
       </div>
       <% end %>
     </div>
