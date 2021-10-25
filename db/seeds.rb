@@ -9,7 +9,7 @@ user = User.create!(
   nickname: "Toto",
   location: "16 Rue de la république, 69002 Lyon"
 )
-user.photo.attach(io: File.open('app/assets/images/profile-pic.jpg'), filename: 'profile-pic.jpg', content_type:'image/jpg')
+user.avatar.attach(io: File.open('app/assets/images/profile-pic.jpg'), filename: 'profile-pic.jpg', content_type:'image/jpg')
 
 Instrument.create!(
   instrument_type: "Electric Guitar",

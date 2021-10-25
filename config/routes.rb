@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   resources :instruments
+
+  resources :instruments do
+    resources :rents
+  end
   # resources :users do
   #   resources :instruments, only: :index
   # end

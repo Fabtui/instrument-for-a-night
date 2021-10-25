@@ -1,6 +1,7 @@
 class Instrument < ApplicationRecord
   belongs_to :user
   has_many_attached :photos
+  has_many :rents
 
   include PgSearch::Model
   pg_search_scope :global_search,
