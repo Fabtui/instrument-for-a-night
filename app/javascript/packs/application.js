@@ -14,6 +14,7 @@ import { homeCarousel } from "../components/home_carousel"
 import { searchButton } from "../components/search_button"
 import { previewImageOnFileSelect } from "../components/profile_pic_preview"
 import { initFlatpickr } from "../plugins/flackpickr";
+import { priceCalculator } from "../components/price_preview"
 
 Rails.start()
 Turbolinks.start()
@@ -39,6 +40,7 @@ document.addEventListener('turbolinks:load', () => {
   searchButton();
   previewImageOnFileSelect();
   initFlatpickr();
+  priceCalculator();
   // Call your functions here, e.g:
   // initSelect2();
 });
