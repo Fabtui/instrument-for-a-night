@@ -1,6 +1,6 @@
 class RentsController < ApplicationController
   def index
-    @rents = Rent.all
+    @rents = Rent.where(user_id: current_user.id)
   end
 
   def show
@@ -39,7 +39,7 @@ class RentsController < ApplicationController
     @rent = Rent.find(params[:id])
     @rent.update(rent_params)
     if @rent.save
-      redirect_to rents_owned_path
+      redirect_to :root
     else
       render :edit
     end
@@ -49,7 +49,7 @@ class RentsController < ApplicationController
     @rent = Rent.find(params[:id])
     @rent.destroy
 
-    redirect_to rents_owned_path
+    redirect_to user_rents_path(current_user)
   end
 
   private
