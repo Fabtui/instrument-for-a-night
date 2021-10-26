@@ -3,24 +3,35 @@
 <div class="instrument_index_result">
   <% if @instruments.count > 0 %>
     <% @instruments.each do |instrument| %>
-      <% if instrument.for_rent %>
-        <h4><%= instrument.instrument_type %></h4>
-        <%= link_to instrument_path(instrument.id) do %>
-        <h1><%= instrument.brand.capitalize %> <%= instrument.name.capitalize %> <%= instrument.year %></h1>
-        <% end %>
+    <div class="instrument-index-container">
+      <div class="instrument-index-photo">
+        <%= cl_image_tag instrument.photos.first.key, crop: :fill, id:"index-picture" %>
+        </div>
+        <div class="instrument-index-infos">
+          <div class="instrument-index-infos-content">
+        <% if instrument.for_rent %>
+            <h4 id="instrument-type"><%= instrument.instrument_type %></h4>
+            <%= link_to instrument_path(instrument.id) do %>
+            <h1><%= instrument.brand.capitalize %> <%= instrument.name.capitalize %> <%= instrument.year %></h1>
+            <% end %>
 
-        <% link_to instrument.brand.capitalize, instrument_path(instrument.id) %>
+            <% link_to instrument.brand.capitalize, instrument_path(instrument.id) %>
+            <h2><%= instrument.user.location %></h2>
 
-        <h4><%= instrument.description %></h4>
-        <% if current_user.instruments.include?(instrument) %>
-          <h2>Rent for me <%= instrument.price_per_day %>€ per day</h2>
-        <% else %>
-          <%= link_to "Rent for me #{instrument.price_per_day}€ per day", new_instrument_rent_path(instrument) %>
+            <div class="instrument-index-infos-description">
+              <h3><%= instrument.description %></h3>
+            </div>
+        </div>
+        <div class="instrument-index-infos-price">
+        <% if !current_user.instruments.include?(instrument) %>
+          <%= link_to "Rent me for #{instrument.price_per_day}€ per day", new_instrument_rent_path(instrument) %>
         <% end %>
-        <h2><%= instrument.user.nickname %></h2>
-        <hr>
+        </div>
+      </div>
+    </div>
+        <% end %>
       <% end %>
-    <% end %>
+
   <% else %>
     <h1>No instrument found</h1>
   <% end %>
