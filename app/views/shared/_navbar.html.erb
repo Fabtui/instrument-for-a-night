@@ -27,7 +27,7 @@
             <%= link_to "#", class: "dropdown-item item2" do %>
               <i class="far fa-envelope"></i>
             <% end %>
-            <%= link_to "#", class: "dropdown-item item3" do %>
+            <%= link_to user_rents_path(current_user), class: "dropdown-item item3" do %>
               <i class="far fa-calendar"></i>
             <% end %>
             <%= link_to edit_user_registration_path, class: "dropdown-item item4" do %>

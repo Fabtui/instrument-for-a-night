@@ -5,8 +5,14 @@ Rails.application.routes.draw do
   resources :instruments
 
   resources :instruments do
-    resources :rents
+    resources :rents, only: [:create, :new]
   end
+
+  resources :users do
+    resources :rents, only: [:show, :index, :edit, :update]
+  end
+
+  resources :rents, only: [:destroy]
   # resources :users do
   #   resources :instruments, only: :index
   # end
