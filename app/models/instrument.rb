@@ -9,8 +9,7 @@ class Instrument < ApplicationRecord
                   using: { tsearch: { prefix: true } }
 
   pg_search_scope :type_search,
-                  against: [:instrument_type],
-                  using: { tsearch: { prefix: true, any_word: true } }
+                  against: [:instrument_type]
 
   pg_search_scope :location_search,
                   associated_against: {

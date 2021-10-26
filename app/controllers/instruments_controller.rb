@@ -2,7 +2,7 @@ class InstrumentsController < ApplicationController
   def index
     search = params[:search]
     if search.present?
-      if search[:name].present? && search[:instrument_type].present? && search[:location].blank?
+      if search[:name].present? && search[:instrument_type].blank? && search[:location].blank?
         search_by_name
       elsif search[:name].blank? && search[:instrument_type].present? && search[:location].blank?
         search_by_type
