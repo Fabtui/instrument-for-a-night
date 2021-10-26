@@ -24,8 +24,9 @@ class RentsController < ApplicationController
     @rent = Rent.new(rent_params)
     @rent.user_id = current_user.id
     @rent.instrument_id = @instrument.id
+    @rent.total_price = ((@rent.end_time.mjd - @rent.start_time.mjd) + 1) * @rent.instrument.price_per_day
     if @rent.save
-      redirect_to instruments_path
+      redirect_to user_rents_path(current_user)
     else
       redirect_to :new
     end
