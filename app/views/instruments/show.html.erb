@@ -5,7 +5,7 @@
     <h4><%= @instrument.description %></h4>
     <h2><%= @instrument.user.nickname %></h2>
     <h2><%= @instrument.user.location %></h2>
-    <h2>Rent for <%= @instrument.price_per_day %>€ per day</h2>
+    <%= link_to "Rent for me #{@instrument.price_per_day}€ per day", new_instrument_rent_path(@instrument) %>
   </div>
   <div class="instrument-show-right">
     <%= render 'shared/photo_display' %>

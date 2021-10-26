@@ -5,7 +5,7 @@
     <% if rent.start_time != rent.end_time %>
     to <%= rent.end_time %>
     <% end %>
-    <%= rent.instrument.price_per_day %>€ per days
+    <%= rent.total_price %>€
     <%= link_to 'Cancel', rent_path(rent),
                     method: :delete, data: { confirm: 'Are you sure?' } %>
     <hr>
