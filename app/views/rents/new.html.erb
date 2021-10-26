@@ -2,14 +2,20 @@
   <h1 id="price" data-price-per-day="<%=@instrument.price_per_day%>">Rent <%= @instrument.user.nickname %>'s <%= @instrument.brand %> <%= @instrument.name %></h1>
 
 <%= simple_form_for [@instrument, @rent] do |f| %>
-     <%= f.input :start_time, label: "Choose your date",
-                               as: :string,
-                               required: false,
-                               input_html: { id: "range_start", class: "d-none"} %>
+     <%= f.input :start_time, label: false,
+                              as: :string,
+                              required: false,
+                              input_html: { id: "range_start", class: "d-none"} %>
       <%= f.input :end_time, label: false,
                              as: :string,
                              required: false,
                              input_html: { id: "range_end", class: "d-none" } %>
+<div id="rent-price">
+  <h2 id='date-display' class='text-center'>Choose a date</h2>
+  <h1 class='text-center'>
+    <span id="price-preview">0</span>€ for <span id="number-of-days">0</span> day<span id="plurilize"></span>
+  </h1>
+</div>
   <% if current_user %>
     <%= f.submit 'Rent', class: "btn btn-primary" %>
   <% else %>
