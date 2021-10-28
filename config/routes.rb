@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   end
 
   resources :rents, only: [:destroy]
+
+  resources :conversations do
+    resources :messages
+  end
   # resources :users do
   #   resources :instruments, only: :index
   # end
