@@ -2,14 +2,16 @@
   <% @messages.each do |message| %>
   <% if message.body %>
     <% user = User.find(message.user_id) %>
-    <%= user.email %><%= message.message_time %>
-    <%= message.body %>
+    <h3><%= user.email %> the <%= message.message_time %></h3>
+    <h2><%= message.body %></h2>
     <hr>
   <% end %>
   <% end %>
-  <%= form_for [@conversation, @message] do |f| %>
-  <%= f.text_area :body %>
+  <% recipient = User.find(@conversation.recipient_id) %>
+  <h1>Send a mesage to <%= recipient.nickname %></h1>
+  <%= simple_form_for [@conversation, @message] do |f| %>
+  <%= f.input :body, label: false %>
   <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
-  <%= f.submit "Send Reply" %>
+  <%= f.submit "Send", class:"btn btn-primary" %>
   <% end %>
 </div>
