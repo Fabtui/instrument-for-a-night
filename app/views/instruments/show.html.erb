@@ -3,7 +3,7 @@
     <h1><%= @instrument.brand.capitalize %> <%= @instrument.name.capitalize %> <%= @instrument.year %></h1>
     <h4><%= @instrument.instrument_type %></h4>
     <h4><%= @instrument.description %></h4>
-    <h2><%= @instrument.user.nickname %></h2>
+    <%= link_to @instrument.user.nickname, conversations_path(sender_id: current_user.id, recipient_id: @instrument.user.id), method: "post"%></h3>
     <h2><%= @instrument.user.location %></h2>
     <% if !current_user.instruments.include?(@instrument) %>
       <%= link_to "Rent for me #{@instrument.price_per_day}€ per day", new_instrument_rent_path(@instrument) %>
