@@ -1,22 +1,46 @@
 <div class="sign-in-container">
-  <h1>Your messages:</h1>
+  <h1><i class="far fa-envelope"></i> Your messages:</h1>
   <hr>
   <% @conversations.each do |conversation| %>
-  <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
-    <% if conversation.sender_id == current_user.id %>
-    <% recipient = User.find(conversation.recipient_id) %>
-    <% else %>
-    <% recipient = User.find(conversation.sender_id) %>
+  <% if conversation.messages.count > 0 %>
+    <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+      <% if conversation.sender_id == current_user.id %>
+      <% recipient = User.find(conversation.recipient_id) %>
+      <% else %>
+      <% recipient = User.find(conversation.sender_id) %>
+      <% end %>
+      <div class="conversation-title">
+        <div class="conversation-title-title">
+          <div class="conversation-title-avatar">
+            <% if recipient.avatar.attached? %>
+              <%= cl_image_tag recipient.avatar.key, class: "avatar dropdown-toggle", id: "navbarDropdown", :gravity=>"faces", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false  %>
+            <% else %>
+              <%= image_tag "https://s2.qwant.com/thumbr/0x380/6/3/c8580b7fb17c87e8b9c17ea690f83b5911d042e960b2c4ee0e8372ab760750/img_206976.png?u=https%3A%2F%2Fcdn.onlinewebfonts.com%2Fsvg%2Fimg_206976.png&q=0&b=1&p=0&a=0", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <% end %>
+          </div>
+          <div class="conversation-title-content">
+            <div class="conversation-title-main">
+              <div class="conversation-title-main-nickname">
+                <h3><%= link_to recipient.nickname, conversation_messages_path(conversation)%></h3>
+              </div>
+            </div>
+            <div class="conversation-title-body">
+              <h4>Last message the <%= conversation.messages.last.message_time %> : <%= conversation.messages.last.body %></h4>
+            </div>
+          </div>
+        </div>
+        <div class="conversation-title-main-messagescount">
+          <h4><%= "#{pluralize(conversation.messages.count, 'message')}" %></h4>
+        </div>
+      </div>
+      <hr>
     <% end %>
-    <h3><%= link_to recipient.nickname, conversation_messages_path(conversation)%> <%= "#{pluralize(conversation.messages.count, 'message')}" %></h3>
-    <h4>Last message: <%= conversation.messages.last.body %></h4>
-    <hr>
-  <% end %>
-  <% end %>
-  <% comment do %>
-    <% @users.each do |user| %>
-    <% if user.id != current_user.id %><h3>
-    <%= link_to user.email, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: "post"%></h3>
+    <% end %>
+    <% comment do %>
+      <% @users.each do |user| %>
+      <% if user.id != current_user.id %><h3>
+      <%= link_to user.email, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: "post"%></h3>
+      <% end %>
     <% end %>
   <% end %>
 
