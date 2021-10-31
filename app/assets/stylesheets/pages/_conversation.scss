@@ -18,6 +18,10 @@
   padding-top: 12px;
 }
 
+.conversation-head-nickname a:hover {
+  text-decoration: none;
+}
+
 .conversation-head-messagescount {
   color: $red;
   display: flex;
