@@ -1,5 +1,5 @@
 <div class="sign-in-container">
-  <h1><i class="far fa-envelope"></i> Your messages:</h1>
+  <h1><i class="far fa-envelope"></i> Messages:</h1>
   <hr>
   <% @conversations.each do |conversation| %>
   <% if conversation.messages.count > 0 %>
@@ -25,23 +25,35 @@
               </div>
             </div>
             <div class="conversation-title-body">
-              <h4>Last message the <%= conversation.messages.last.message_time %> : <%= conversation.messages.last.body %></h4>
+              <h5>Last message the <%= conversation.messages.last.message_time %></h5>
+              <% if conversation.messages.last.user_id === current_user.id %>
+              <h4>You: <%= conversation.messages.last.body %></h4>
+              <% else %>
+              <h4><%= recipient.nickname.capitalize %>: <%= conversation.messages.last.body %></h4>
+              <% end %>
             </div>
           </div>
         </div>
         <div class="conversation-title-main-messagescount">
           <h4><%= "#{pluralize(conversation.messages.count, 'message')}" %></h4>
+          <% unseen_messages = conversation.messages.where(seen: false) %>
+          <% unseen_messages_count = unseen_messages.where.not(user_id: current_user.id).count %>
+          <% if unseen_messages_count > 0 %>
+            <h4><%= "#{pluralize(unseen_messages_count, 'new message')}" %></h4>
+          <% end %>
         </div>
       </div>
       <hr>
     <% end %>
     <% end %>
+
     <% comment do %>
       <% @users.each do |user| %>
       <% if user.id != current_user.id %><h3>
       <%= link_to user.email, conversations_path(sender_id: current_user.id, recipient_id: user.id), method: "post"%></h3>
       <% end %>
     <% end %>
+
   <% end %>
 
   <% end %>
