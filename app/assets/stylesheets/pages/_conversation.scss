@@ -1,20 +1,38 @@
-.conversation-title {
+.conversation-container {
+  display: flex;
+  // justify-content: space-between;
+  background-color: white;
+  border-radius: 40px;
+  padding: 8px 24px 8px 8px;
+  margin-bottom: 20px;
+}
+
+.conversation-content {
+  margin-left: 20px;
+  flex-grow: 1;
+}
+
+.conversation-head {
   display: flex;
   justify-content: space-between;
+  padding-top: 12px;
 }
 
-.conversation-title-title {
+.conversation-head-messagescount {
+  color: $red;
   display: flex;
-}
-
-.conversation-title-main {
-  width: 100%;
-  margin-left: 20px;
-  h3 {
+  align-items: center;
+  h4 {
     margin-bottom: 0;
+    font-size: 16px;
   }
 }
 
-.conversation-title-body {
-  margin-left: 20px;
+.conversation-head-body-last {
+  color: rgba(0, 0, 0, 0.801);
+}
+
+.conversation-head-body {
+  padding-top: 8px;
+  width: 100%;
 }
