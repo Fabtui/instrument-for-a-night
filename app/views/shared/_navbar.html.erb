@@ -9,27 +9,12 @@
 
 <%# UNSEEN_MESSAGES_COUNT %>
 <% @conversations = Conversation.all %>
-<% @userconverationssender = @conversations.where(sender_id: current_user.id) %>
-<% @userconverationsrecipient = @conversations.where(recipient_id: current_user.id) %>
 <% unseen_messages = 0 %>
-<% @userconverationssender.each do |userconverations| %>
-  <% userconverations.messages.each do |message| %>
-    <% if message.seen === false %>
-      <% if message.user_id === current_user.id %>
-        <% unseen_messages += 0 %>
-      <% else %>
-        <% unseen_messages += 1 %>
-     <% end %>
-    <% end %>
-  <% end %>
-<% end %>
-<% @userconverationsrecipient.each do |userconverations| %>
-  <% userconverations.messages.each do |message| %>
-    <% if message.seen === false %>
-      <% if message.user_id === current_user.id %>
-        <% unseen_messages += 0 %>
-      <% else %>
-        <% unseen_messages += 1 %>
+<% @conversations.each do |conversation| %>
+  <% if conversation.sender_id === current_user.id || conversation.recipient_id === current_user.id %>
+    <% conversation.messages.each do |message| %>
+    <% if message.seen === false && message.user_id != current_user.id %>
+      <% unseen_messages += 1 %>
      <% end %>
     <% end %>
   <% end %>
