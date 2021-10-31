@@ -13,9 +13,9 @@
 <% @conversations.each do |conversation| %>
   <% if conversation.sender_id === current_user.id || conversation.recipient_id === current_user.id %>
     <% conversation.messages.each do |message| %>
-    <% if message.seen === false && message.user_id != current_user.id %>
-      <% unseen_messages += 1 %>
-     <% end %>
+      <% if message.seen === false && message.user_id != current_user.id %>
+        <% unseen_messages += 1 %>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>

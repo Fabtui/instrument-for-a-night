@@ -35,7 +35,6 @@
           </div>
         </div>
         <div class="conversation-title-main-messagescount">
-          <h4><%= "#{pluralize(conversation.messages.count, 'message')}" %></h4>
           <% unseen_messages = conversation.messages.where(seen: false) %>
           <% unseen_messages_count = unseen_messages.where.not(user_id: current_user.id).count %>
           <% if unseen_messages_count > 0 %>
