@@ -38,6 +38,19 @@
             <% end %>
           </div>
         </li>
+        <li class="unseen-notification">
+          <% @conversations = Conversation.all %>
+          <% @userconverations = @conversations.where(sender_id: current_user.id) || @conversations.where(recipient_id: current_user.id)  %>
+          <% unseen_messages = 0 %>
+          <% @userconverations.each do |userconverations| %>
+            <% userconverations.messages.each do |message| %>
+              <% if message.seen === false %>
+              <% unseen_messages += 1 %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <h1><%= unseen_messages %></h1>
+        </li>
       <% else %>
         <li class="nav-item unsigned">
           <%= link_to new_user_session_path, class: "nav-link" do %>
