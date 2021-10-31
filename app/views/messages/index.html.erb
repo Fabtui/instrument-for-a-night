@@ -2,7 +2,7 @@
   <% @messages.each do |message| %>
   <% if message.body %>
     <% user = User.find(message.user_id) %>
-    <h3><%= user.email %> the <%= message.message_time %></h3>
+    <h3><span id="message-sender"><%= user.nickname %></span> <span id="message_date">( <%= message.message_time %> )</span></h3>
     <h2><%= message.body %></h2>
     <hr>
   <% end %>

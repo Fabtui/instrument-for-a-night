@@ -5,6 +5,12 @@ class MessagesController < ApplicationController
 
   def index
     @messages = @conversation.messages
+    @messages.map { |message|
+      if message.user_id != current_user.id
+        message.seen = true
+        message.save
+      end
+    }
     @message = @conversation.messages.new
   end
 
