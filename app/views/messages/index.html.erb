@@ -1,17 +1,62 @@
-<div class="sign-in-container">
-  <% @messages.each do |message| %>
-  <% if message.body %>
-    <% user = User.find(message.user_id) %>
-    <h3><span id="message-sender"><%= user.nickname %></span> <span id="message_date">( <%= message.message_time %> )</span></h3>
-    <h2><%= message.body %></h2>
-    <hr>
-  <% end %>
-  <% end %>
+<% if @conversation.recipient_id === current_user.id %>
+  <% recipient = User.find(@conversation.sender_id) %>
+<% else %>
   <% recipient = User.find(@conversation.recipient_id) %>
-  <h1>Send a mesage to <%= recipient.nickname %></h1>
-  <%= simple_form_for [@conversation, @message] do |f| %>
-  <%= f.input :body, label: false %>
-  <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
-  <%= f.submit "Send", class:"btn btn-primary" %>
-  <% end %>
+<% end %>
+
+<div class="sign-in-container">
+  <div class="message-conversation-head">
+    <div class="conversation-title-avatar">
+      <% if recipient.avatar.attached? %>
+        <%= cl_image_tag recipient.avatar.key, class: "avatar dropdown-toggle", id: "navbarDropdown", :gravity=>"faces", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false  %>
+      <% else %>
+        <%= image_tag "https://s2.qwant.com/thumbr/0x380/6/3/c8580b7fb17c87e8b9c17ea690f83b5911d042e960b2c4ee0e8372ab760750/img_206976.png?u=https%3A%2F%2Fcdn.onlinewebfonts.com%2Fsvg%2Fimg_206976.png&q=0&b=1&p=0&a=0", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+      <% end %>
+      <h2>Chat with <%= recipient.nickname %></h2>
+    </div>
+    <div class="conversation-messages-count">
+      <h4><%= "#{pluralize(@conversation.messages.count, 'message')}" %></h4>
+    </div>
+  </div>
+  <div class="messages-container">
+    <% @messages.each do |message| %>
+      <% if message.body %>
+        <% user = User.find(message.user_id) %>
+        <% if user.id === current_user.id %>
+        <div class="user-message-container">
+          <div class="user-message-head">
+            <h3> <span class="message-date">( <%= message.message_time %> )</span> <span id="message-sender-user">You</span></h3>
+          </div>
+          <div class="user-message-body">
+            <div id="user-message-corner"></div>
+            <h2><%= message.body %></h2>
+          </div>
+        </div>
+        <% else %>
+        <div class="sender-message-container">
+          <div class="sender-message-head">
+            <h3><span id="message-sender"><%= user.nickname %></span> <span class="message-date">( <%= message.message_time %> )</span></h3>
+          </div>
+          <div class="sender-message-body">
+            <div id="sender-message-corner"></div>
+            <h2><%= message.body %></h2>
+          </div>
+        </div>
+        <% end %>
+        <hr>
+      <% end %>
+    <% end %>
+  </div>
+  <h4>Send a mesage to <%= recipient.nickname %></h4>
+  <div class="message-form-container">
+    <div class="message-form">
+      <%= simple_form_for [@conversation, @message] do |f| %>
+      <%= f.input :body, label: false %>
+      <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+    </div>
+    <div class="message-form-button">
+      <%= f.submit "Send", class:"btn btn-primary" %>
+    </div>
+    <% end %>
+  </div>
 </div>

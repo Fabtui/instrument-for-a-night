@@ -15,22 +15,14 @@ import { searchButton } from "../components/search_button"
 import { previewImageOnFileSelect } from "../components/profile_pic_preview"
 import { initFlatpickr } from "../plugins/flackpickr";
 import { priceCalculator } from "../components/price_preview"
+import { messagesScrollDown } from "../components/messages_scroll_down"
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-
-// ----------------------------------------------------
-// Note(lewagon): ABOVE IS RAILS DEFAULT CONFIGURATION
-// WRITE YOUR OWN JS STARTING FROM HERE 👇
-// ----------------------------------------------------
-
 // External imports
 import "bootstrap";
-
-// Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('turbolinks:load', () => {
   moveSearchbar();
@@ -41,6 +33,5 @@ document.addEventListener('turbolinks:load', () => {
   previewImageOnFileSelect();
   initFlatpickr();
   priceCalculator();
-  // Call your functions here, e.g:
-  // initSelect2();
+  messagesScrollDown();
 });
