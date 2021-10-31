@@ -8,13 +8,15 @@
   </button>
 
 <%# UNSEEN_MESSAGES_COUNT %>
-<% @conversations = Conversation.all %>
-<% unseen_messages = 0 %>
-<% @conversations.each do |conversation| %>
-  <% if conversation.sender_id === current_user.id || conversation.recipient_id === current_user.id %>
-    <% conversation.messages.each do |message| %>
-      <% if message.seen === false && message.user_id != current_user.id %>
-        <% unseen_messages += 1 %>
+<% if user_signed_in? %>
+  <% @conversations = Conversation.all %>
+  <% unseen_messages = 0 %>
+  <% @conversations.each do |conversation| %>
+    <% if conversation.sender_id === current_user.id || conversation.recipient_id === current_user.id %>
+      <% conversation.messages.each do |message| %>
+        <% if message.seen === false && message.user_id != current_user.id %>
+          <% unseen_messages += 1 %>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
