@@ -71,3 +71,20 @@
   transition: all 0.2s;
   background-color: white;
 }
+
+.unseen-notification {
+  position: absolute;
+  right: 20px;
+  h5 {
+    color: white;
+    background-color: $red;
+    font-size: 16px;
+    padding: 4px 8px;
+    border-radius: 50%;
+  }
+}
+
+.dropdown-notification {
+  top: -8px;
+  z-index: 10;
+}

@@ -37,10 +37,12 @@
               <i class="fas fa-guitar"></i>
             <% end %>
             <%= link_to conversations_path, class: "dropdown-item item2" do %>
-              <i class="far fa-envelope"></i>
               <% if unseen_messages > 0 %>
-               <h1><%= unseen_messages %></h1>
+              <div class="unseen-notification dropdown-notification">
+               <h5><%= unseen_messages %></h5>
+              </div>
               <% end %>
+              <i class="far fa-envelope"></i>
             <% end %>
             <%= link_to user_rents_path(current_user), class: "dropdown-item item3" do %>
               <i class="far fa-calendar"></i>
@@ -55,7 +57,7 @@
         </li>
         <li class="unseen-notification">
         <% if unseen_messages > 0 %>
-          <h1><%= unseen_messages %></h1>
+          <h5><%= unseen_messages %></h5>
         <% end %>
         </li>
       <% else %>
