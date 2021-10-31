@@ -8,7 +8,7 @@ class CreateInstruments < ActiveRecord::Migration[6.1]
       t.string :description
       t.integer :year
       t.integer :price_per_day
-      t.boolean :for_rent, default: false
+      t.boolean :for_rent, default: true
 
       t.timestamps
     end
