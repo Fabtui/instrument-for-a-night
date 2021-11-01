@@ -8,7 +8,7 @@
       <% else %>
       <% recipient = User.find(conversation.sender_id) %>
       <% end %>
-      <div class="conversation-container">
+      <div class="conversation-container" data-conversation-id="<%= conversation.id %>">
         <div class="conversation-avatar">
           <% if recipient.avatar.attached? %>
             <%= cl_image_tag recipient.avatar.key, class: "avatar dropdown-toggle", id: "navbarDropdown", :gravity=>"faces", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false  %>

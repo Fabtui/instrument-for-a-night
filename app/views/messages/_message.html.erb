@@ -1,0 +1,25 @@
+<% if message.body %>
+  <% user = User.find(message.user_id) %>
+  <% if user.id === current_user.id %>
+  <div class="user-message-container" id="message-<%= message.id %>">
+    <div class="user-message-head">
+      <h3> <span class="message-date">( <%= message.message_time %> )</span> <span id="message-sender-user">You</span></h3>
+    </div>
+    <div class="user-message-body">
+      <div id="user-message-corner"></div>
+      <h2><%= message.body %></h2>
+    </div>
+  </div>
+  <% else %>
+  <div class="sender-message-container" id="message-<%= message.id %>">
+    <div class="sender-message-head">
+      <h3><span id="message-sender"><%= user.nickname %></span> <span class="message-date">( <%= message.message_time %> )</span></h3>
+    </div>
+    <div class="sender-message-body">
+      <div id="sender-message-corner"></div>
+      <h2><%= message.body %></h2>
+    </div>
+  </div>
+  <% end %>
+  <hr>
+<% end %>
