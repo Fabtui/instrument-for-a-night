@@ -16,6 +16,7 @@ import { previewImageOnFileSelect } from "../components/profile_pic_preview"
 import { initFlatpickr } from "../plugins/flackpickr";
 import { priceCalculator } from "../components/price_preview"
 import { messagesScrollDown } from "../components/messages_scroll_down"
+import { initConversationCable } from "../channels/conversation_channel"
 
 Rails.start()
 Turbolinks.start()
@@ -34,4 +35,5 @@ document.addEventListener('turbolinks:load', () => {
   initFlatpickr();
   priceCalculator();
   messagesScrollDown();
+  initConversationCable();
 });

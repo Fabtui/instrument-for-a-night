@@ -21,7 +21,11 @@ class MessagesController < ApplicationController
   def create
     @message = @conversation.messages.new(message_params)
     if @message.save
-      redirect_to conversation_messages_path(@conversation)
+      ConversationChannel.broadcast_to(
+        @conversation,
+        render_to_string(partial: "message", locals: { message: @message })
+      )
+      redirect_to conversation_messages_path(@conversation, anchor: "message-#{@message.id}")
     end
   end
 
