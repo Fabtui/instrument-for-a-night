@@ -1,0 +1,12 @@
+.calendar-rented {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  background-color: $red;
+  a {
+    color: white;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

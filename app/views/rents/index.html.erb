@@ -1,4 +1,3 @@
-<%= comment do  %>
 <div class="sign-in-container">
   <% @rents.each do |rent| %>
     <%= rent.instrument.user.nickname %>'s <%= rent.instrument.brand %> <%= rent.instrument.name %>
@@ -12,10 +11,16 @@
     <hr>
   <% end %>
 </div>
-<% end %>
 
 <div class="sign-in-container">
-<%= month_calendar(attribute: :start_date, end_attribute: :end_date) do |date| %>
-  <%= date.day %>
-</div>
+<%= month_calendar(events: @rents) do |date, rents| %>
+  <%= date %>
+
+  <% rents.each do |rent| %>
+    <div class="calendar-rented">
+      <%= link_to instrument_path(rent.instrument) do %>
+        <%= rent.instrument.brand %> <%= rent.instrument.name %>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>
