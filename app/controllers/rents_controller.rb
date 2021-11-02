@@ -1,6 +1,7 @@
 class RentsController < ApplicationController
   def index
     @rents = Rent.where(user_id: current_user.id)
+    @bookings = Rent.where(instrument: (Instrument.where(user_id: current_user.id)))
   end
 
   def show

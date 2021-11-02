@@ -24,3 +24,18 @@
     </div>
   <% end %>
 <% end %>
+</div>
+
+<div class="sign-in-container">
+<%= month_calendar(events: @bookings) do |date, bookings| %>
+  <%= date %>
+
+  <% bookings.each do |booking| %>
+    <div class="calendar-boooking">
+      <%= link_to instrument_path(booking.instrument) do %>
+        <%= booking.instrument.brand %> <%= booking.instrument.name %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
+</div>
