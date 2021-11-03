@@ -1,41 +1,21 @@
-<div class="sign-in-container">
-  <% @rents.each do |rent| %>
-    <%= rent.instrument.user.nickname %>'s <%= rent.instrument.brand %> <%= rent.instrument.name %>
-    <%= rent.start_time %>
-    <% if rent.start_time != rent.end_time %>
-    to <%= rent.end_time %>
-    <% end %>
-    <%= rent.total_price %>€
-    <%= link_to 'Cancel', rent_path(rent),
-                    method: :delete, data: { confirm: 'Are you sure?' } %>
-    <hr>
-  <% end %>
-</div>
-
-<div class="sign-in-container">
-<%= month_calendar(events: @rents) do |date, rents| %>
+<div class="calendar-container">
+<%= month_calendar(events: @all_rents) do |date, all_rents| %>
   <%= date %>
 
-  <% rents.each do |rent| %>
+  <% all_rents.each do |rent| %>
+  <% if @rents.include?(rent) %>
     <div class="calendar-rented">
-      <%= link_to instrument_path(rent.instrument) do %>
+      <%= link_to rent_path(rent.id) do %>
+        <%= rent.instrument.brand %> <%= rent.instrument.name %>
+      <% end %>
+    </div>
+  <% else %>
+      <div class="calendar-loaned">
+      <%= link_to rent_path(rent.id) do %>
         <%= rent.instrument.brand %> <%= rent.instrument.name %>
       <% end %>
     </div>
   <% end %>
-<% end %>
-</div>
-
-<div class="sign-in-container">
-<%= month_calendar(events: @bookings) do |date, bookings| %>
-  <%= date %>
-
-  <% bookings.each do |booking| %>
-    <div class="calendar-boooking">
-      <%= link_to instrument_path(booking.instrument) do %>
-        <%= booking.instrument.brand %> <%= booking.instrument.name %>
-      <% end %>
-    </div>
   <% end %>
 <% end %>
 </div>

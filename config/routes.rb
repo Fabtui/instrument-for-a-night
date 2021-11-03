@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :rents, only: [:show, :index, :edit, :update]
   end
 
-  resources :rents, only: [:destroy]
+  resources :rents, only: [:destroy, :show]
 
   resources :conversations do
     resources :messages
