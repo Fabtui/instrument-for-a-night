@@ -5,9 +5,9 @@
   <% all_rents.each do |rent| %>
   <% if @rents.include?(rent) %>
     <% owner = User.find(rent.instrument.user_id) %>
-    <div class="calendar-rented">
+    <div class="calendar-content rented">
       <%= link_to rent_path(rent.id) do %>
-        <%= rent.instrument.brand %> <%= rent.instrument.name %>
+      <%= rent.instrument.name %>
       <% end %>
     </div>
     <%= comment do %>
@@ -17,9 +17,10 @@
     </div>
     <% end %>
   <% else %>
-      <div class="calendar-loaned">
-      <%= link_to rent_path(rent.id) do %>
-        <%= rent.instrument.brand %> <%= rent.instrument.name %>
+    <% user = User.find(rent.instrument.user_id) %>
+      <div class="calendar-content loaned">
+      <%= user.nickname %> : <%= link_to rent_path(rent.id) do %>
+         <%= rent.instrument.name %>
       <% end %>
     </div>
   <% end %>
