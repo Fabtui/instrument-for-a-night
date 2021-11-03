@@ -4,11 +4,18 @@
 
   <% all_rents.each do |rent| %>
   <% if @rents.include?(rent) %>
+    <% owner = User.find(rent.instrument.user_id) %>
     <div class="calendar-rented">
       <%= link_to rent_path(rent.id) do %>
         <%= rent.instrument.brand %> <%= rent.instrument.name %>
       <% end %>
     </div>
+    <%= comment do %>
+    <div class="calendar-rented-content hidden">
+    You have rented the <%= link_to "#{owner.nickname}'s", conversations_path(sender_id: current_user.id, recipient_id: owner.id), method: "post"%> <span>
+    <%= rent.instrument.brand %> <%= link_to rent.instrument.name, instrument_path(rent.instrument.id) %></span>
+    </div>
+    <% end %>
   <% else %>
       <div class="calendar-loaned">
       <%= link_to rent_path(rent.id) do %>
@@ -18,4 +25,14 @@
   <% end %>
   <% end %>
 <% end %>
+
+<div class="calendar-indications-rented">
+  <div class="rented-block"></div>
+  <div class="rented-text">Instrument you've rented</div>
+</div>
+<div class="calendar-indications-loaned">
+  <div class="loaned-block"></div>
+  <div class="loaned-text">Instrument that have been rented you</div>
+</div>
+
 </div>

@@ -7,6 +7,8 @@ class RentsController < ApplicationController
 
   def show
     @rent = Rent.find(params[:id])
+    @user = User.find(@rent.user_id)
+    @owner = User.find(@rent.instrument.user_id)
   end
 
   def new
