@@ -1,9 +1,13 @@
 <div class="sign-in-container">
-  <h1><%= @rent.instrument.brand %> <%= @rent.instrument.name %></h1>
-  <% user = User.find(@rent.user_id) %>
-  <h2><%= user.nickname %></h2>
-  <h2><%= @rent.start_time %> to <%= @rent.end_time %></h2>
-  <h2><%= @rent.total_price %>€</h2>
+  <% if @user === current_user %>
+    <h1>You have rented the <%= link_to "#{@owner.nickname}'s", conversations_path(sender_id: current_user.id, recipient_id: @owner.id), method: "post"%> <span>
+    <%= @rent.instrument.brand %> <%= link_to @rent.instrument.name, instrument_path(@rent.instrument.id) %></span></h1>
+  <% else %>
+    <h1><%= @user.nickname %> rented your <span><%= @rent.instrument.brand %> <%= @rent.instrument.name %></span></h1>
+  <% end %>
+  <h2>From <%= @rent.start_time %> to <%= @rent.end_time %></h2>
+  <h2>For a total amount of <%= @rent.total_price %>€</h2>
+  <%= link_to "Back", user_rents_path(current_user.id), class:"btn btn-warning" %>
   <% if Date.yesterday < @rent.start_time %>
     <%= link_to "Cancel", rent_path(@rent.id), class:"btn btn-danger", method: 'delete' %>
   <% end %>

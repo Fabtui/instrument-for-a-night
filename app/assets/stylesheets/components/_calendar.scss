@@ -5,6 +5,7 @@
 
 .day {
   font-size: 12px;
+  font-weight: 600;
 }
 
 .calendar-rented {
@@ -12,9 +13,12 @@
   text-align: center;
   justify-content: center;
   background-color: $red;
+  margin-bottom: 4px;
   a {
+    padding: 4px;
     font-size: 12px;
     color: white;
+    font-weight: 300;
     &:hover {
       text-decoration: none;
     }
@@ -26,11 +30,48 @@
   text-align: center;
   justify-content: center;
   background-color: blue;
+  margin-bottom: 4px;
   a {
+    padding: 4px;
     font-size: 12px;
     color: white;
+    font-weight: 300;
     &:hover {
       text-decoration: none;
     }
   }
 }
+
+.calendar-indications-rented {
+  display: flex;
+}
+
+.rented-block {
+  width: 12px;
+  height: 12px;
+  background-color: $red;
+  margin-right: 8px;
+  margin-top: 4px;
+}
+
+.calendar-indications-loaned {
+  display: flex;
+}
+
+.loaned-block {
+  width: 12px;
+  height: 12px;
+  background-color: blue;
+  margin-right: 8px;
+  margin-top: 4px;
+}
+
+// .calendar-rented-content {
+//   position: absolute;
+//   width: 100%;
+//   font-size: 12px;
+//   font-weight: 300;
+//   display: flex;
+//   text-align: center;
+//   background-color: cadetblue;
+// }
