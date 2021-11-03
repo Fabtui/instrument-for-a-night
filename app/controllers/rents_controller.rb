@@ -1,7 +1,8 @@
 class RentsController < ApplicationController
   def index
     @rents = Rent.where(user_id: current_user.id)
-    @bookings = Rent.where(instrument: (Instrument.where(user_id: current_user.id)))
+    @loans = Rent.where(instrument: Instrument.where(user_id: current_user.id))
+    @all_rents = @rents.or(@loans)
   end
 
   def show
@@ -25,11 +26,13 @@ class RentsController < ApplicationController
     @rent = Rent.new(rent_params)
     @rent.user_id = current_user.id
     @rent.instrument_id = @instrument.id
-    @rent.total_price = ((@rent.end_time.mjd - @rent.start_time.mjd) + 1) * @rent.instrument.price_per_day
+    if @rent.end_time
+      @rent.total_price = ((@rent.end_time.mjd - @rent.start_time.mjd) + 1) * @rent.instrument.price_per_day
+    end
     if @rent.save
       redirect_to user_rents_path(current_user)
     else
-      redirect_to :new
+      render :new
     end
   end
 

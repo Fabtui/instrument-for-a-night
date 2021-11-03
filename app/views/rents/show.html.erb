@@ -1,0 +1,10 @@
+<div class="sign-in-container">
+  <h1><%= @rent.instrument.brand %> <%= @rent.instrument.name %></h1>
+  <% user = User.find(@rent.user_id) %>
+  <h2><%= user.nickname %></h2>
+  <h2><%= @rent.start_time %> to <%= @rent.end_time %></h2>
+  <h2><%= @rent.total_price %>€</h2>
+  <% if Date.yesterday < @rent.start_time %>
+    <%= link_to "Cancel", rent_path(@rent.id), class:"btn btn-danger", method: 'delete' %>
+  <% end %>
+</div>

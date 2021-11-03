@@ -4,11 +4,11 @@
 <%= simple_form_for [@instrument, @rent] do |f| %>
      <%= f.input :start_time, label: false,
                               as: :string,
-                              required: false,
+                              required: true,
                               input_html: { id: "range_start", class: "d-none"} %>
       <%= f.input :end_time, label: false,
                              as: :string,
-                             required: false,
+                             required: true,
                              input_html: { id: "range_end", class: "d-none" } %>
 <div id="rent-price">
   <h2 id='date-display' class='text-center'>Choose a date</h2>

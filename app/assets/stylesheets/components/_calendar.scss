@@ -1,9 +1,19 @@
+.calendar-container {
+  padding: 100px 10%;
+  height: 90vh;
+}
+
+.day {
+  font-size: 12px;
+}
+
 .calendar-rented {
   display: flex;
   text-align: center;
   justify-content: center;
   background-color: $red;
   a {
+    font-size: 12px;
     color: white;
     &:hover {
       text-decoration: none;
@@ -11,12 +21,13 @@
   }
 }
 
-.calendar-booking {
+.calendar-loaned {
   display: flex;
   text-align: center;
   justify-content: center;
   background-color: blue;
   a {
+    font-size: 12px;
     color: white;
     &:hover {
       text-decoration: none;
