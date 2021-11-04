@@ -5,7 +5,7 @@
   <% else %>
     <h1><%= @user.nickname %> rented your <span><%= @rent.instrument.brand %> <%= @rent.instrument.name %></span></h1>
   <% end %>
-  <h2>From <%= @rent.start_time %> to <%= @rent.end_time %></h2>
+  <h2>From <%= @rent.start_time.strftime("%B %d %Y") %> to <%= @rent.end_time.strftime("%B %d %Y") %></h2>
   <h2>For a total amount of <%= @rent.total_price %>€</h2>
   <%= link_to "Back", user_rents_path(current_user.id), class:"btn btn-warning" %>
   <% if Date.yesterday < @rent.start_time %>
