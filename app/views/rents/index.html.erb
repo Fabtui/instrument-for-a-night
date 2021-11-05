@@ -1,43 +1,52 @@
 <div class="calendar-container">
-<%= month_calendar(events: @all_rents) do |date, all_rents| %>
-  <%= date %>
-  <% all_rents.each do |rent| %>
-  <% if @rents.include?(rent) %>
-    <% owner = User.find(rent.instrument.user_id) %>
-    <div class="calendar-content rented" data-id="<%= rent.id %>">
-      <%= link_to rent_path(rent.id) do %>
-      <%= rent.instrument.name %>
-      <% end %>
-    </div>
-    <div class="calendar-partial hidden" id="calendar-partial-<%= rent.id %>">
+  <div class="calendar">
+  <%= month_calendar(events: @all_rents) do |date, all_rents| %>
+    <%= date %>
+    <% all_rents.each do |rent| %>
+    <% if @rents.include?(rent) %>
       <% owner = User.find(rent.instrument.user_id) %>
-      You have rented the <%= link_to "#{owner.nickname}'s", conversations_path(sender_id: current_user.id, recipient_id: owner.id), method: "post"%> <span>
-      <%= rent.instrument.brand %> <%= link_to rent.instrument.name, instrument_path(rent.instrument.id) %></span>
-    </div>
+      <div class="calendar-content rented" data-id="<%= rent.id %>" data-rent="rent" data-brand="<%= rent.instrument.brand %>" data-price="<%= rent.total_price %>"
+      data-name="<%= rent.instrument.name %>" data-owner="<%= owner.nickname %>" data-startdate="<%= rent.start_time %>" data-enddate="<%= rent.end_time %>">
+        <%= link_to rent_path(rent.id) do %>
+        <%= rent.instrument.name %>
+        <% end %>
+      </div>
+      <div class="calendar-partial hidden" id="calendar-partial-<%= rent.id %>">
+        <% owner = User.find(rent.instrument.user_id) %>
+        You have rented the <%= link_to "#{owner.nickname}'s", conversations_path(sender_id: current_user.id, recipient_id: owner.id), method: "post"%> <span>
+        <%= rent.instrument.brand %> <%= link_to rent.instrument.name, instrument_path(rent.instrument.id) %></span>
+      </div>
 
-  <% else %>
-    <% user = User.find(rent.instrument.user_id) %>
-      <div class="calendar-content loaned" data-id="<%= rent.id %>">
-      <%= user.nickname %> : <%= link_to rent_path(rent.id) do %>
-         <%= rent.instrument.name %>
-      <% end %>
-    </div>
-    <div class="calendar-partial hidden" id="calendar-partial-<%= rent.id %>">
-      <% owner = User.find(rent.instrument.user_id) %>
-      You have rented the <%= link_to "#{owner.nickname}'s", conversations_path(sender_id: current_user.id, recipient_id: owner.id), method: "post"%> <span>
-      <%= rent.instrument.brand %> <%= link_to rent.instrument.name, instrument_path(rent.instrument.id) %></span>
-    </div>
+    <% else %>
+      <% user = User.find(rent.instrument.user_id) %>
+        <div class="calendar-content loaned" data-id="<%= rent.id %>" data-rent="loan" data-brand="<%= rent.instrument.brand %>" data-price="<%= rent.total_price %>"
+      data-name="<%= rent.instrument.name %>" data-user="<%= user.nickname %>" data-startdate="<%= rent.start_time %>" data-enddate="<%= rent.end_time %>">
+        <%= user.nickname %> : <%= link_to rent_path(rent.id) do %>
+          <%= rent.instrument.name %>
+        <% end %>
+      </div>
+      <div class="calendar-partial hidden" id="calendar-partial-<%= rent.id %>">
+        <% owner = User.find(rent.instrument.user_id) %>
+        You have rented the <%= link_to "#{owner.nickname}'s", conversations_path(sender_id: current_user.id, recipient_id: owner.id), method: "post"%> <span>
+        <%= rent.instrument.brand %> <%= link_to rent.instrument.name, instrument_path(rent.instrument.id) %></span>
+      </div>
+    <% end %>
+    <% end %>
   <% end %>
-  <% end %>
-<% end %>
 
-<div class="calendar-indications-rented">
-  <div class="rented-block"></div>
-  <div class="rented-text">Instrument you've rented</div>
-</div>
-<div class="calendar-indications-loaned">
-  <div class="loaned-block"></div>
-  <div class="loaned-text">Instrument that have been rented you</div>
-</div>
+    <div class="calendar-indications-rented">
+      <div class="rented-block"></div>
+      <div class="rented-text">Instrument you've rented</div>
+    </div>
+    <div class="calendar-indications-loaned">
+      <div class="loaned-block"></div>
+      <div class="loaned-text">Instrument that have been rented you</div>
+    </div>
 
+  </div>
+  <div class="calendar-display">
+    <h1 id="instrument"></h1>
+    <h2 id="date"></h2>
+    <h2 id="price"></h2>
+  </div>
 </div>
