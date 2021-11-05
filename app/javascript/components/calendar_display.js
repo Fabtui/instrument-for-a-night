@@ -8,6 +8,7 @@ const calendarDisplay = () => {
     calendarElement.addEventListener('click', (e) => {
       const rent = e.target.dataset.rent;
       const id = e.target.dataset.id;
+      const instrumentId = e.target.dataset.instrumentid;
       const instru = e.target.dataset.name;
       const price = e.target.dataset.price;
       const owner = e.target.dataset.owner;
@@ -16,7 +17,8 @@ const calendarDisplay = () => {
       const endDate = e.target.dataset.enddate;
       const user = e.target.dataset.user;
       if (rent === "rent") {
-        instrumentDisplay.textContent = `You've rent the ${owner}'s ${brand} ${instru}`
+        instrumentDisplay.textContent = `You've rent the ${owner}'s `
+        instrumentDisplay.insertAdjacentHTML('beforeend',`<a href="/instruments/${instrumentId}">${brand} ${instru}</a>`)
       } else {
         instrumentDisplay.textContent = `${user} have rented your ${brand} ${instru}`
       }
