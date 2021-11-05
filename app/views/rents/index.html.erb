@@ -1,27 +1,31 @@
 <div class="calendar-container">
 <%= month_calendar(events: @all_rents) do |date, all_rents| %>
   <%= date %>
-
   <% all_rents.each do |rent| %>
   <% if @rents.include?(rent) %>
     <% owner = User.find(rent.instrument.user_id) %>
-    <div class="calendar-content rented">
+    <div class="calendar-content rented" data-id="<%= rent.id %>">
       <%= link_to rent_path(rent.id) do %>
       <%= rent.instrument.name %>
       <% end %>
     </div>
-    <%= comment do %>
-    <div class="calendar-rented-content hidden">
-    You have rented the <%= link_to "#{owner.nickname}'s", conversations_path(sender_id: current_user.id, recipient_id: owner.id), method: "post"%> <span>
-    <%= rent.instrument.brand %> <%= link_to rent.instrument.name, instrument_path(rent.instrument.id) %></span>
+    <div class="calendar-partial hidden" id="calendar-partial-<%= rent.id %>">
+      <% owner = User.find(rent.instrument.user_id) %>
+      You have rented the <%= link_to "#{owner.nickname}'s", conversations_path(sender_id: current_user.id, recipient_id: owner.id), method: "post"%> <span>
+      <%= rent.instrument.brand %> <%= link_to rent.instrument.name, instrument_path(rent.instrument.id) %></span>
     </div>
-    <% end %>
+
   <% else %>
     <% user = User.find(rent.instrument.user_id) %>
-      <div class="calendar-content loaned">
+      <div class="calendar-content loaned" data-id="<%= rent.id %>">
       <%= user.nickname %> : <%= link_to rent_path(rent.id) do %>
          <%= rent.instrument.name %>
       <% end %>
+    </div>
+    <div class="calendar-partial hidden" id="calendar-partial-<%= rent.id %>">
+      <% owner = User.find(rent.instrument.user_id) %>
+      You have rented the <%= link_to "#{owner.nickname}'s", conversations_path(sender_id: current_user.id, recipient_id: owner.id), method: "post"%> <span>
+      <%= rent.instrument.brand %> <%= link_to rent.instrument.name, instrument_path(rent.instrument.id) %></span>
     </div>
   <% end %>
   <% end %>

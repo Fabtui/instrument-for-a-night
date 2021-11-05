@@ -17,6 +17,7 @@ import { initFlatpickr } from "../plugins/flackpickr";
 import { priceCalculator } from "../components/price_preview"
 import { messagesScrollDown } from "../components/messages_scroll_down"
 import { initConversationCable } from "../channels/conversation_channel"
+import { calendarPartial } from "../components/calendar_partial"
 
 Rails.start()
 Turbolinks.start()
@@ -36,4 +37,5 @@ document.addEventListener('turbolinks:load', () => {
   priceCalculator();
   messagesScrollDown();
   initConversationCable();
+  calendarPartial();
 });
