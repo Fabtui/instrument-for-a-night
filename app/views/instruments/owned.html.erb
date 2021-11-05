@@ -1,29 +1,49 @@
 <div class="sign-in-container">
-  <h1>MY INSTRUMENTS</h1>
-  <hr>
-  <%= link_to "New intrument", new_instrument_path, class:"btn btn-primary" %>
+  <div class="instrument-owned-header">
+    <h1>MY INSTRUMENTS</h1>
+    <%= link_to new_instrument_path do %>
+      <i class="fas fa-plus btn btn-primary"></i>
+    <% end %>
+  </div>
 
   <hr>
 
   <% if @owned_instruments.count > 0 %>
     <% @owned_instruments.each do |instrument| %>
-      <h4><%= instrument.instrument_type %></h4>
-      <%= link_to instrument_path(instrument.id) do %>
-      <h1><%= instrument.brand.capitalize %> <%= instrument.name.capitalize %> <%= instrument.year %></h1>
-      <% end %>
+      <div class="instrument-owned">
+        <div class="instrument-owned-infos">
+          <%= link_to instrument_path(instrument.id) do %>
+            <%= instrument.brand.capitalize %> <%= instrument.name.capitalize %> <%= instrument.year %>
+          <% end %>
 
-      <% link_to instrument.brand.capitalize, instrument_path(instrument.id) %>
+          <% link_to instrument.brand.capitalize, instrument_path(instrument.id) %>
 
-      <h4><%= instrument.description %></h4>
-    <br>
-      <% if instrument.for_rent %>
-      <h2>Currently avaible for rent for:</h2>
-        <h2><%= instrument.price_per_day %>€ per day</h2>
-      <% else %>
-      <h2>No avaible for rent</h2>
-      <% end %>
-    <%= link_to "Edit this intrument", edit_instrument_path(instrument.id), class:"btn btn-success" %>
-    <%= link_to "Remove this intrument", instrument_path(instrument.id), class:"btn btn-danger", method: 'delete' %>
+          <h4><%= instrument.instrument_type %></h4>
+          <h4 class="description"><%= instrument.description %></h4>
+          <div class="instrument-owned-infos-bottom">
+            <div class="instrument-owned-infos-bottom-rental">
+              <% if instrument.for_rent %>
+                <h2>Rental for <%= instrument.price_per_day %>€ per day</h2>
+              <% else %>
+              <h2>No rented</h2>
+              <% end %>
+            </div>
+            <div class="instrument-owned-infos-bottom-buttons">
+              <%= link_to edit_instrument_path(instrument.id) do %>
+                <i class="fas fa-edit btn btn-success"></i>
+              <% end %>
+              <%= link_to instrument_path(instrument.id), method: 'delete' do %>
+                <i class="fas fa-trash btn btn-danger"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="instrument-owned-photo">
+        <% if instrument.photos.first %>
+          <%= cl_image_tag instrument.photos.first.key, crop: :fill, id:"index-picture", width: 350, height: 250 %>
+        <% end %>
+        </div>
+      </div>
     <hr>
     <% end %>
     <% else %>
