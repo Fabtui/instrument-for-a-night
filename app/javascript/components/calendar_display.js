@@ -25,7 +25,7 @@ const calendarDisplay = () => {
       }
       instrumentDisplay.insertAdjacentHTML('beforeend',`<a href="/instruments/${instrumentId}">${brand} ${instru}</a>`)
       dateDisplay.textContent = `From ${startDate} to ${endDate}`
-      priceDisplay.textContent = `Total price: ${price} €`
+      priceDisplay.textContent = `For ${price} €`
       if (yesterdayDate < startDate) {
         priceDisplay.insertAdjacentHTML('beforeend',`<hr><a class="btn btn-danger" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/rents/${id}">Cancel</a>`)
       }
