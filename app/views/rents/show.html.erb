@@ -9,6 +9,6 @@
   <h2>For a total amount of <%= @rent.total_price %>€</h2>
   <%= link_to "Back", user_rents_path(current_user.id), class:"btn btn-warning" %>
   <% if Date.yesterday < @rent.start_time %>
-    <%= link_to "Cancel", rent_path(@rent.id), class:"btn btn-danger", method: 'delete' %>
+    <%= link_to "Cancel", rent_path(@rent.id), class:"btn btn-danger", method: 'delete', data: { confirm: 'Are you sure?' } %>
   <% end %>
 </div>

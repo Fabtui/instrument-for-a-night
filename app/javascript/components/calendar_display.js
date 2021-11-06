@@ -3,6 +3,7 @@ const calendarDisplay = () => {
   const instrumentDisplay = document.querySelector('#instrument');
   const dateDisplay = document.querySelector('#date');
   const priceDisplay = document.querySelector('#price');
+  console.log(calendarDisplay)
   if (calendarElements) {
     calendarElements.forEach( calendarElement =>
     calendarElement.addEventListener('click', (e) => {
@@ -15,18 +16,24 @@ const calendarDisplay = () => {
       const brand = e.target.dataset.brand;
       const startDate = e.target.dataset.startdate;
       const endDate = e.target.dataset.enddate;
+      const yesterdayDate = e.target.dataset.yesterday;
       const user = e.target.dataset.user;
       if (rent === "rent") {
         instrumentDisplay.textContent = `You've rent the ${owner}'s `
-        instrumentDisplay.insertAdjacentHTML('beforeend',`<a href="/instruments/${instrumentId}">${brand} ${instru}</a>`)
       } else {
-        instrumentDisplay.textContent = `${user} have rented your ${brand} ${instru}`
+        instrumentDisplay.textContent = `${user} have rented your `
       }
+      instrumentDisplay.insertAdjacentHTML('beforeend',`<a href="/instruments/${instrumentId}">${brand} ${instru}</a>`)
       dateDisplay.textContent = `From ${startDate} to ${endDate}`
       priceDisplay.textContent = `Total price: ${price} €`
+      if (yesterdayDate < startDate) {
+        priceDisplay.insertAdjacentHTML('beforeend',`<hr><a class="btn btn-danger" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/rents/${id}">Cancel</a>`)
+      }
     })
     )
   }
 };
 
 export { calendarDisplay }
+
+//
