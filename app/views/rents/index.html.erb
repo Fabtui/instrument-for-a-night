@@ -7,28 +7,14 @@
       <% owner = User.find(rent.instrument.user_id) %>
       <div class="calendar-content rented" data-id="<%= rent.id %>" data-instrumentid="<%= rent.instrument.id %>" data-yesterday="<%= Date.yesterday %>" data-rent="rent" data-brand="<%= rent.instrument.brand %>" data-price="<%= rent.total_price %>"
       data-name="<%= rent.instrument.name %>" data-owner="<%= owner.nickname %>" data-startdate="<%= rent.start_time %>" data-enddate="<%= rent.end_time %>">
-        <%= link_to rent_path(rent.id) do %>
         <%= rent.instrument.name %>
-        <% end %>
-      </div>
-      <div class="calendar-partial hidden" id="calendar-partial-<%= rent.id %>">
-        <% owner = User.find(rent.instrument.user_id) %>
-        You have rented the <%= link_to "#{owner.nickname}'s", conversations_path(sender_id: current_user.id, recipient_id: owner.id), method: "post"%> <span>
-        <%= rent.instrument.brand %> <%= link_to rent.instrument.name, instrument_path(rent.instrument.id) %></span>
       </div>
 
     <% else %>
       <% user = User.find(rent.instrument.user_id) %>
         <div class="calendar-content loaned" data-id="<%= rent.id %>" data-instrumentid="<%= rent.instrument.id %>"  data-yesterday="<%= Date.yesterday %>" data-brand="<%= rent.instrument.brand %>" data-price="<%= rent.total_price %>"
       data-name="<%= rent.instrument.name %>" data-user="<%= user.nickname %>" data-startdate="<%= rent.start_time %>" data-enddate="<%= rent.end_time %>">
-        <%= user.nickname %> : <%= link_to rent_path(rent.id) do %>
-          <%= rent.instrument.name %>
-        <% end %>
-      </div>
-      <div class="calendar-partial hidden" id="calendar-partial-<%= rent.id %>">
-        <% owner = User.find(rent.instrument.user_id) %>
-        You have rented the <%= link_to "#{owner.nickname}'s", conversations_path(sender_id: current_user.id, recipient_id: owner.id), method: "post"%> <span>
-        <%= rent.instrument.brand %> <%= link_to rent.instrument.name, instrument_path(rent.instrument.id) %></span>
+        <%= user.nickname %> : <%= rent.instrument.name %>
       </div>
     <% end %>
     <% end %>
@@ -45,9 +31,10 @@
 
   </div>
   <div class="calendar-display">
-    <h1 id="instrument"></h1>
-    <h2 id="date"></h2>
-    <h2 id="price"></h2>
-    <div class="calendar-display-cancel"></div>
+    <div class="calendar-display-content">
+      <h1 id="instrument">Select a rent to see details</h1>
+      <h3 id="date"></h3>
+      <h2 id="price"></h2>
+    </div>
   </div>
 </div>
