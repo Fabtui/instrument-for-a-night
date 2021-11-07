@@ -1,6 +1,6 @@
 const showMap = () => {
   const showMapButton = document.getElementById('show-map-button');
-  if (map) {
+  if (showMapButton) {
     const map = document.querySelector('.map');
     const result = document.querySelector('.instrument-index-result')
     const showMapButtonInner = showMapButton.querySelector('i');
