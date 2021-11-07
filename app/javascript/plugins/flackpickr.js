@@ -9,7 +9,7 @@ const initFlatpickr = () => {
     const rents = JSON.parse(rentForm.dataset.rents);
     flatpickr("#range_start", {
       plugins: [new rangePlugin({ input: "#range_end"})],
-      minDate: "today",
+      minDate: new Date().fp_incr(+1),
       inline: true,
       dateFormat: "Y-m-d",
       "disable": rents,

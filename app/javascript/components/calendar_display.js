@@ -16,7 +16,7 @@ const calendarDisplay = () => {
       const brand = e.target.dataset.brand;
       const startDate = e.target.dataset.startdate;
       const endDate = e.target.dataset.enddate;
-      const yesterdayDate = e.target.dataset.yesterday;
+      const tomorrowDate = e.target.dataset.tomorrow;
       const user = e.target.dataset.user;
       if (rent === "rent") {
         instrumentDisplay.textContent = `You've rent the ${owner}'s `
@@ -26,7 +26,7 @@ const calendarDisplay = () => {
       instrumentDisplay.insertAdjacentHTML('beforeend',`<a href="/instruments/${instrumentId}">${brand} ${instru}</a>`)
       dateDisplay.textContent = `From ${startDate} to ${endDate}`
       priceDisplay.textContent = `For ${price} €`
-      if (yesterdayDate < startDate) {
+      if (tomorrowDate < startDate) {
         priceDisplay.insertAdjacentHTML('beforeend',`<hr><a class="btn btn-danger" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/rents/${id}">Cancel</a>`)
       }
     })
