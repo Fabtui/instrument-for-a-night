@@ -34,11 +34,7 @@ class RentsController < ApplicationController
     if @rent.save
       @recipient = User.find(@instrument.user_id)
       @user = current_user
-      if Conversation.between(current_user.id, @recipient.id).present?
-        @conversation = Conversation.between(current_user.id, @recipient.id).first
-      else
-        @conversation = Conversation.create!(sender_id: current_user.id, recipient_id: @recipient.id)
-      end
+      define_conversation(@recipient)
       Message.new.create_auto_message(@user, @recipient, @conversation, @instrument, @rent)
       redirect_to user_rents_path(current_user)
     else
@@ -62,8 +58,12 @@ class RentsController < ApplicationController
 
   def destroy
     @rent = Rent.find(params[:id])
+    @instrument = Instrument.find(@rent.instrument_id)
+    @recipient = User.find(@instrument.user_id)
+    @user = current_user
+    define_conversation(@recipient)
     @rent.destroy
-
+    Message.new.create_auto_cancel_message(@user, @recipient, @conversation, @instrument, @rent)
     redirect_to user_rents_path(current_user)
   end
 
@@ -71,5 +71,13 @@ class RentsController < ApplicationController
 
   def rent_params
     params.require(:rent).permit(:id, :start_time, :end_time)
+  end
+
+  def define_conversation(recipient)
+    if Conversation.between(current_user.id, recipient.id).present?
+      @conversation = Conversation.between(current_user.id, @recipient.id).first
+    else
+      @conversation = Conversation.create!(sender_id: current_user.id, recipient_id: @recipient.id)
+    end
   end
 end

@@ -8,13 +8,26 @@ class Message < ApplicationRecord
   end
 
   def create_auto_message(user, recipient, conversation, instrument, rent)
+    set_variables(user, recipient, conversation, instrument, rent)
+    @body = "Hi #{@recipient.nickname}! I've rented your #{@instrument.brand} #{@instrument.name} from the #{@rent.start_time} to the #{@rent.end_time}!"
+    @message = Message.new(user_id: @user.id, conversation_id: @conversation.id, body: @body)
+    @message.save
+  end
+
+  def create_auto_cancel_message(user, recipient, conversation, instrument, rent)
+    set_variables(user, recipient, conversation, instrument, rent)
+    @body = "Hi #{@recipient.nickname}! Sorry I have canceled the rental of #{@instrument.brand} #{@instrument.name} from the #{@rent.start_time} to the #{@rent.end_time}."
+    @message = Message.new(user_id: @user.id, conversation_id: @conversation.id, body: @body)
+    @message.save
+  end
+
+  private
+
+  def set_variables(user, recipient, conversation, instrument, rent)
     @instrument = instrument
     @rent = rent
     @user = user
     @recipient = recipient
     @conversation = conversation
-    @body = "Hi #{@recipient.nickname}! I've rented your #{@instrument.name} from the #{@rent.start_time} to the #{@rent.end_time}!"
-    @message = Message.new(user_id: @user.id, conversation_id: @conversation.id, body: @body)
-    @message.save
   end
 end
