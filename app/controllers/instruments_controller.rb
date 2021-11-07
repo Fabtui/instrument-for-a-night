@@ -27,11 +27,13 @@ class InstrumentsController < ApplicationController
 
   def show
     @instrument = Instrument.find(params[:id])
-    @markers =
+    marker =
       {
         lat: @instrument.latitude,
         lng: @instrument.longitude
       }
+    @markers = []
+    @markers.push(marker)
   end
 
   def owned
