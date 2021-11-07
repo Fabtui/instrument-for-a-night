@@ -1,19 +1,23 @@
 .instrument-index-big-container {
+  padding: 180px 10% 0 10%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
   display: flex;
-  width: 100%;
-  overflow: hidden;
+  // width: 100%;
+  // overflow: hidden;
 }
 
 .instrument-index-result {
-  position: relative;
+  // position: relative;
   width: 60%;
-  margin-top: 180px;
-  padding: 0px 20px 0 10%;
+  // margin-top: 180px;
+  // padding: 0px 20px 0 10%;
   transition: 0.3s;
 }
 
 .hidden-map-result {
-  width: 90%;
+  width: 100%;
   transition: 0.3s;
 }
 
@@ -21,7 +25,6 @@
   position: sticky;
   top: 80px;
   width: 40%;
-  margin-top: 200px;
   border-radius: 5px;
   transition: 0.3s;
 }
@@ -32,16 +35,14 @@
 }
 
 .map-show-button-container {
-  position: relative;
+  position: sticky;
+  top: 80px;
   margin-bottom: 20px;
   display: flex;
   justify-content: end;
+  z-index: 99;
 }
 
-#show-map-button {
-  font-size: 32px;
-  position: absolute;
-  right: -73px;
-  top: 20px;
-  z-index: 9;
+#show-map-button:focus {
+  box-shadow: none
 }
