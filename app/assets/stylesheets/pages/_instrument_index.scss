@@ -1,5 +1,19 @@
+.instrument-index-big-container {
+  display: flex;
+  width: 100%;
+}
+
 .instrument-index-result {
-  padding: 250px 10% 0 10%;
+  width: 60%;
+  padding: 250px 20px 0 10%;
+}
+
+#map {
+  position: sticky;
+  top: 80px;
+  width: 40%;
+  margin-top: 250px;
+  border-radius: 5px;
 }
 
 .instrument-index-container {
@@ -36,6 +50,7 @@
   white-space: nowrap;
   text-overflow: "…";
   h1 {
+    margin-top: 24px;
     font-size: 32px;
   }
   h2 {

@@ -1,44 +1,45 @@
 <%= render 'shared/search_bar' %>
 
-<div class="instrument-index-result">
-  <% if @instruments.count > 0 %>
-    <% @instruments.each do |instrument| %>
-    <div class="instrument-index-container">
-      <div class="instrument-index-photo">
-        <%= cl_image_tag instrument.photos.first.key, crop: :fill, id:"index-picture" %>
-        </div>
-        <div class="instrument-index-infos">
-          <div class="instrument-index-infos-content">
-        <% if instrument.for_rent %>
-            <h4 id="instrument-type"><%= instrument.instrument_type %></h4>
-            <%= link_to instrument_path(instrument.id) do %>
-            <h1><%= instrument.brand.capitalize %> <%= instrument.name.capitalize %> <%= instrument.year %></h1>
-            <% end %>
+<div class="instrument-index-big-container">
+  <div class="instrument-index-result">
+    <% if @instruments.count > 0 %>
+      <% @instruments.each do |instrument| %>
+      <div class="instrument-index-container">
+        <div class="instrument-index-photo">
+          <%= cl_image_tag instrument.photos.first.key, crop: :fill, id:"index-picture" %>
+          </div>
+          <div class="instrument-index-infos">
+            <div class="instrument-index-infos-content">
+          <% if instrument.for_rent %>
+              <h4 id="instrument-type"><%= instrument.instrument_type %></h4>
+              <%= link_to instrument_path(instrument.id) do %>
+              <h1><%= instrument.brand.capitalize %> <%= instrument.name.capitalize %> <%= instrument.year %></h1>
+              <% end %>
 
-            <% link_to instrument.brand.capitalize, instrument_path(instrument.id) %>
-            <h2><%= instrument.user.location %></h2>
+              <% link_to instrument.brand.capitalize, instrument_path(instrument.id) %>
+              <h2><%= instrument.user.location %></h2>
 
-            <div class="instrument-index-infos-description">
-              <h3><%= instrument.description %></h3>
-            </div>
-        </div>
-        <div class="instrument-index-infos-price">
-        <% if !current_user.instruments.include?(instrument) %>
-          <%= link_to "Rent me for #{instrument.price_per_day}€ per day", new_instrument_rent_path(instrument) %>
-        <% end %>
+              <div class="instrument-index-infos-description">
+                <h3><%= instrument.description %></h3>
+              </div>
+          </div>
+          <div class="instrument-index-infos-price">
+          <% if !current_user.instruments.include?(instrument) %>
+            <%= link_to "Rent me for #{instrument.price_per_day}€ per day", new_instrument_rent_path(instrument) %>
+          <% end %>
+          </div>
         </div>
       </div>
-    </div>
+          <% end %>
         <% end %>
-      <% end %>
 
-  <% else %>
-    <h1>No instrument found</h1>
-  <% end %>
-</div>
-
-<div id="map"
-     style="width: 100%; height: 600px;"
-     data-markers="<%= @markers.to_json %>"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    <% else %>
+      <h1>No instrument found</h1>
+    <% end %>
+  </div>
+  <div id="map"
+      style="width: 30%; height: 90vh;"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
 </div>
