@@ -1,11 +1,20 @@
 .instrument-index-big-container {
   display: flex;
   width: 100%;
+  overflow: hidden;
 }
 
 .instrument-index-result {
+  position: relative;
   width: 60%;
   padding: 250px 20px 0 10%;
+  transition: 0.3s;
+
+}
+
+.hidden-map-result {
+  width: 90%;
+  transition: 0.3s;
 }
 
 #map {
@@ -14,6 +23,22 @@
   width: 40%;
   margin-top: 250px;
   border-radius: 5px;
+  transition: 0.3s;
+}
+
+.hidden-map {
+  transform: translateX(100vh);
+  transition: 0.3s;
+}
+
+.map-show-button-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: end;
+}
+
+#show-map-button {
+  font-size: 32px;
 }
 
 .instrument-index-container {
