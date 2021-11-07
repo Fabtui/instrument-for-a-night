@@ -5,14 +5,14 @@
     <% all_rents.each do |rent| %>
     <% if @rents.include?(rent) %>
       <% owner = User.find(rent.instrument.user_id) %>
-      <div class="calendar-content rented" data-id="<%= rent.id %>" data-instrumentid="<%= rent.instrument.id %>" data-yesterday="<%= Date.yesterday %>" data-rent="rent" data-brand="<%= rent.instrument.brand %>" data-price="<%= rent.total_price %>"
+      <div class="calendar-content rented" data-id="<%= rent.id %>" data-instrumentid="<%= rent.instrument.id %>" data-tomorrow="<%= Date.tomorrow %>" data-rent="rent" data-brand="<%= rent.instrument.brand %>" data-price="<%= rent.total_price %>"
       data-name="<%= rent.instrument.name %>" data-owner="<%= owner.nickname %>" data-startdate="<%= rent.start_time %>" data-enddate="<%= rent.end_time %>">
         <%= rent.instrument.name %>
       </div>
 
     <% else %>
       <% user = User.find(rent.instrument.user_id) %>
-        <div class="calendar-content loaned" data-id="<%= rent.id %>" data-instrumentid="<%= rent.instrument.id %>"  data-yesterday="<%= Date.yesterday %>" data-brand="<%= rent.instrument.brand %>" data-price="<%= rent.total_price %>"
+        <div class="calendar-content loaned" data-id="<%= rent.id %>" data-instrumentid="<%= rent.instrument.id %>"  data-tomorrow="<%= Date.tomorrow %>" data-brand="<%= rent.instrument.brand %>" data-price="<%= rent.total_price %>"
       data-name="<%= rent.instrument.name %>" data-user="<%= user.nickname %>" data-startdate="<%= rent.start_time %>" data-enddate="<%= rent.end_time %>">
         <%= user.nickname %> : <%= rent.instrument.name %>
       </div>
