@@ -1,0 +1,22 @@
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  border-radius: 10px !important;
+  background-color: rgba(255, 255, 255, 0.897) !important;
+  text-align: center;
+  h2 {
+    font-size: 18px;
+    font-weight: 800;
+  }
+  a {
+    color: rgba(0, 0, 0, 0.808);
+    text-transform: uppercase;
+    font-weight: 800;
+    &:hover {
+      text-decoration: none;
+      color: black;
+    }
+  }
+}

@@ -22,10 +22,16 @@ class InstrumentsController < ApplicationController
     else
       @instruments = Instrument.all
     end
+    create_markers
   end
 
   def show
     @instrument = Instrument.find(params[:id])
+    @markers =
+      {
+        lat: @instrument.latitude,
+        lng: @instrument.longitude
+      }
   end
 
   def owned
@@ -116,5 +122,15 @@ class InstrumentsController < ApplicationController
     instrument_name = Instrument.global_search(search[:name])
     instrument_location = Instrument.location_search(search[:location])
     @instruments = (instrument_type & instrument_name & instrument_location)
+  end
+
+  def create_markers
+    @markers = @instruments.geocoded.map do |instrument|
+      {
+        lat: instrument.latitude,
+        lng: instrument.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { instrument: instrument } )
+      }
+    end
   end
 end
