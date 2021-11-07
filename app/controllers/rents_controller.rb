@@ -32,6 +32,14 @@ class RentsController < ApplicationController
       @rent.total_price = ((@rent.end_time.mjd - @rent.start_time.mjd) + 1) * @rent.instrument.price_per_day
     end
     if @rent.save
+      @recipient = User.find(@instrument.user_id)
+      @user = current_user
+      if Conversation.between(current_user.id, @recipient.id).present?
+        @conversation = Conversation.between(current_user.id, @recipient.id).first
+      else
+        @conversation = Conversation.create!(sender_id: current_user.id, recipient_id: @recipient.id)
+      end
+      Message.new.create_auto_message(@user, @recipient, @conversation, @instrument, @rent)
       redirect_to user_rents_path(current_user)
     else
       render :new
