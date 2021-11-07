@@ -19,6 +19,7 @@ import { messagesScrollDown } from "../components/messages_scroll_down"
 import { initConversationCable } from "../channels/conversation_channel"
 // import { calendarPartial } from "../components/calendar_partial"
 import { calendarDisplay } from "../components/calendar_display"
+import { initMapbox } from '../plugins/init_mapbox';
 
 Rails.start()
 Turbolinks.start()
@@ -40,4 +41,5 @@ document.addEventListener('turbolinks:load', () => {
   initConversationCable();
   // calendarPartial();
   calendarDisplay();
+  initMapbox();
 });
