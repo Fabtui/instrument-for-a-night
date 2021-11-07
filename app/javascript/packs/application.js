@@ -20,6 +20,7 @@ import { initConversationCable } from "../channels/conversation_channel"
 // import { calendarPartial } from "../components/calendar_partial"
 import { calendarDisplay } from "../components/calendar_display"
 import { initMapbox } from '../plugins/init_mapbox';
+import { showMap } from '../components/show_map';
 
 Rails.start()
 Turbolinks.start()
@@ -42,4 +43,5 @@ document.addEventListener('turbolinks:load', () => {
   // calendarPartial();
   calendarDisplay();
   initMapbox();
+  showMap();
 });
