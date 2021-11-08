@@ -5,12 +5,19 @@
     <hr>
     <div class="rent-checkout">
       <div class="rent-checkout-item" data-price="<%= rent.total_price %>" data-id="<%= rent.id %>" >
-      <%= rent.instrument.brand %> <%= rent.instrument.name %> from <%= rent.start_time %> to <%= rent.end_time %>
+      <%= rent.instrument.brand %> <%= rent.instrument.name %>
+      <% if rent.start_time === rent.end_time %>
+        the <%= rent.start_time %>
+      <% else %>
+        from <%= rent.start_time %> to <%= rent.end_time %>
+      <% end %>
       <span class="checkout-item-price"><%= humanized_money_with_symbol(rent.total_price) %></span> <input type="checkbox" id="checkout-checkbox-<%= rent.id %>" name="<%= rent.id %>"
           checked>
       </div>
       <div id="checkout-button" class="btn btn-primary">
-        <i class="fas fa-money-check-alt"></i>
+        <%= link_to rents_mark_has_paid_path(rent) do %>
+          <i class="fas fa-money-check-alt"></i>
+        <% end %>
       </div>
     </div>
       <hr>

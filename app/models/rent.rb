@@ -6,4 +6,5 @@ class Rent < ApplicationRecord
   validates :end_time, presence: true
 
   monetize :total_price_cents
+
 end

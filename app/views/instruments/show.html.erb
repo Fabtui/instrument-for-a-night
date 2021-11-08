@@ -9,6 +9,11 @@
       <h3><%= @instrument.user.nickname%></h3>
     <% end %>
       <h4><%= @instrument.user.location %></h4>
+    <div class="instrument-index-card-infos-price">
+    <% unless current_user.instruments.include?(@instrument) %>
+      <%= link_to "Rent for me #{humanized_money_with_symbol(@instrument.price_per_day)} per day", new_instrument_rent_path(@instrument) %>
+    <% end %>
+    </div>
     <div class="show-map">
       <div id="map"
           style="width: 90%; height: 100%;"
@@ -16,9 +21,6 @@
           data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
-    <% if !current_user.instruments.include?(@instrument) %>
-      <%= link_to "Rent for me #{humanized_money_with_symbol(@instrument.price_per_day)} per day", new_instrument_rent_path(@instrument) %>
-    <% end %>
   </div>
   <div class="instrument-show-right">
     <%= render 'shared/photo_display' %>
