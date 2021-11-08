@@ -71,6 +71,13 @@ class RentsController < ApplicationController
     @rents = Rent.where(user_id: current_user.id).where(paid: false)
   end
 
+  def mark_has_paid
+    rent = Rent.find(params[:format])
+    rent.paid = true
+    rent.save
+    redirect_to rents_checkout_path
+  end
+
   private
 
   def rent_params

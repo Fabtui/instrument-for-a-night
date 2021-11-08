@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :instruments
   get 'rents/checkout'
+  get 'rents/mark_has_paid'
 
   resources :instruments do
     resources :rents, only: [:create, :new]
