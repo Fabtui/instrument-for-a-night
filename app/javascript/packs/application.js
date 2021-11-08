@@ -21,6 +21,7 @@ import { initConversationCable } from "../channels/conversation_channel"
 import { calendarDisplay } from "../components/calendar_display"
 import { initMapbox } from '../plugins/init_mapbox';
 import { showMap } from '../components/show_map';
+import { checkoutAmount } from '../components/checkout_amount';
 
 Rails.start()
 Turbolinks.start()
@@ -44,4 +45,5 @@ document.addEventListener('turbolinks:load', () => {
   calendarDisplay();
   initMapbox();
   showMap();
+  checkoutAmount();
 });

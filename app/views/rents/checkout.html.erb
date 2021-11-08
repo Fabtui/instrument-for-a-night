@@ -1,0 +1,17 @@
+<div class="sign-in-container">
+  <% total_amount = 0 %>
+  <% @rents.each do |rent| %>
+    <hr>
+    <div class="rent-checkout-item" data-price="<%= rent.total_price %>" data-id="<%= rent.id %>" >
+    <%= rent.instrument.brand %> <%= rent.instrument.name %> from <%= rent.start_time %> to <%= rent.end_time %>
+    <%= humanized_money_with_symbol(rent.total_price) %> <input type="checkbox" id="checkout-checkbox-<%= rent.id %>" name="<%= rent.id %>"
+         checked>
+    </div>
+    <div id="checkout-button" class="btn btn-primary"><i class="fas fa-money-check-alt"></i></div>
+    <hr>
+    <% total_amount += rent.total_price %>
+  <% end %>
+
+  <h3 class="total-amount"></h3>
+
+</div>
