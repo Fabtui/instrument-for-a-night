@@ -67,6 +67,10 @@ class RentsController < ApplicationController
     redirect_to user_rents_path(current_user)
   end
 
+  def checkout
+    @rents = Rent.where(user_id: current_user.id).where(paid: false)
+  end
+
   private
 
   def rent_params

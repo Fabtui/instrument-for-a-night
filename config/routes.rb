@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   resources :instruments
+  get 'rents/checkout'
 
   resources :instruments do
     resources :rents, only: [:create, :new]
