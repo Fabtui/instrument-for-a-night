@@ -18,8 +18,8 @@
       </div>
     </div>
     <div class="instrument-index-card-infos-price">
-    <% if !current_user.instruments.include?(instrument) %>
-      <%= link_to "Rent me for #{instrument.price_per_day}€ per day", new_instrument_rent_path(instrument) %>
+    <% unless current_user && current_user.instruments.include?(instrument) %>
+      <%= link_to "Rent me for #{humanized_money_with_symbol(instrument.price_per_day)} per day", new_instrument_rent_path(instrument) %>
     <% end %>
     </div>
   </div>

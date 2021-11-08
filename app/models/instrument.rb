@@ -4,6 +4,7 @@ class Instrument < ApplicationRecord
   has_many :rents
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+  monetize :price_per_day_cents
 
   include PgSearch::Model
   pg_search_scope :global_search,
