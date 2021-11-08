@@ -1,15 +1,19 @@
 <div class="sign-in-container">
+  <h1><i class="fas fa-shopping-cart"></i> Rents Cart</h1>
   <% total_amount = 0 %>
   <% @rents.each do |rent| %>
     <hr>
-    <div class="rent-checkout-item" data-price="<%= rent.total_price %>" data-id="<%= rent.id %>" >
-    <%= rent.instrument.brand %> <%= rent.instrument.name %> from <%= rent.start_time %> to <%= rent.end_time %>
-    <%= humanized_money_with_symbol(rent.total_price) %> <input type="checkbox" id="checkout-checkbox-<%= rent.id %>" name="<%= rent.id %>"
-         checked>
+    <div class="rent-checkout">
+      <div class="rent-checkout-item" data-price="<%= rent.total_price %>" data-id="<%= rent.id %>" >
+      <%= rent.instrument.brand %> <%= rent.instrument.name %> from <%= rent.start_time %> to <%= rent.end_time %>
+      <span class="checkout-item-price"><%= humanized_money_with_symbol(rent.total_price) %></span> <input type="checkbox" id="checkout-checkbox-<%= rent.id %>" name="<%= rent.id %>"
+          checked>
+      </div>
+      <div id="checkout-button" class="btn btn-primary">
+        <i class="fas fa-money-check-alt"></i>
+      </div>
     </div>
-    <div id="checkout-button" class="btn btn-primary"><i class="fas fa-money-check-alt"></i></div>
-    <hr>
-    <% total_amount += rent.total_price %>
+      <hr>
   <% end %>
 
   <h3 class="total-amount"></h3>
