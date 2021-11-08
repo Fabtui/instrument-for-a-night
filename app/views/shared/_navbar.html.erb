@@ -50,14 +50,14 @@
             <%= link_to user_rents_path(current_user), class: "dropdown-item item3" do %>
               <i class="far fa-calendar"></i>
             <% end %>
-            <%= link_to edit_user_registration_path, class: "dropdown-item item4" do %>
+            <%= link_to rents_checkout_path, class: "dropdown-item item4" do %>
+              <i class="fas fa-shopping-cart"></i>
+            <% end %>
+            <%= link_to edit_user_registration_path, class: "dropdown-item item5" do %>
               <i class="fas fa-cog"></i>
             <% end %>
-            <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item item5" do %>
+            <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item item6" do %>
               <i class="fas fa-sign-out-alt"></i>
-            <% end %>
-            <%= link_to rents_checkout_path, class: "dropdown-item item6" do %>
-              <i class="fas fa-shopping-cart"></i>
             <% end %>
           </div>
         </li>
