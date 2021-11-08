@@ -1,0 +1,13 @@
+.rent-checkout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkout-item-price {
+  color: $red;
+}
+
+.rent-checkout input[type=checkbox] {
+  margin-left: 20px;
+}
