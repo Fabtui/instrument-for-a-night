@@ -8,6 +8,7 @@ const calendarDisplay = () => {
     calendarElements.forEach( calendarElement =>
     calendarElement.addEventListener('click', (e) => {
       const rent = e.target.dataset.rent;
+      const paid = e.target.dataset.paid;
       const id = e.target.dataset.id;
       const instrumentId = e.target.dataset.instrumentid;
       const instru = e.target.dataset.name;
@@ -26,8 +27,12 @@ const calendarDisplay = () => {
       instrumentDisplay.insertAdjacentHTML('beforeend',`<a href="/instruments/${instrumentId}">${brand} ${instru}</a>`)
       dateDisplay.textContent = `From ${startDate} to ${endDate}`
       priceDisplay.textContent = `For ${price} €`
-      if (tomorrowDate < startDate) {
+      if (tomorrowDate < startDate && owner && paid === 'false') {
+        priceDisplay.insertAdjacentHTML('beforeend',`<hr><a class="btn btn-primary" href="/rents/checkout">Checkout</a>`)
         priceDisplay.insertAdjacentHTML('beforeend',`<hr><a class="btn btn-danger" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/rents/${id}">Cancel</a>`)
+      }
+      if (paid === 'true') {
+        priceDisplay.insertAdjacentHTML('beforeend',`<hr><h4>Paid</h4>`)
       }
     })
     )
