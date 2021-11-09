@@ -22,6 +22,7 @@ import { calendarDisplay } from "../components/calendar_display"
 import { initMapbox } from '../plugins/init_mapbox';
 import { showMap } from '../components/show_map';
 import { checkoutAmount } from '../components/checkout_amount';
+import { instrumentLightbox } from '../components/instrument_lightbox';
 
 Rails.start()
 Turbolinks.start()
@@ -43,7 +44,8 @@ document.addEventListener('turbolinks:load', () => {
   initConversationCable();
   // calendarPartial();
   calendarDisplay();
-  initMapbox();
-  showMap();
   checkoutAmount();
+  instrumentLightbox();
+  // initMapbox();
+  // showMap();
 });

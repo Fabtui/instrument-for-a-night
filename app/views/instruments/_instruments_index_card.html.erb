@@ -1,7 +1,21 @@
 <div class="instrument-index-card">
   <div class="instrument-index-card-photo">
-    <%= cl_image_tag instrument.photos.first.key, crop: :fill, id:"index-picture" %>
+  <% if instrument.photos.first.key %>
+     <div class="image-lightbox"><span><%= cl_image_tag instrument.photos.first.key, crop: :fill, id:"index-picture" %></span></div>
+  <% end %>
   </div>
+
+  <div class="preview-box">
+    <div class="details">
+      <div class="details-title"></div>
+      <span class="details-icon fas fa-times"></span>
+    </div>
+    <div class="image-box">
+      <img src="" alt="">
+    </div>
+  </div>
+  <div class="shadow"></div>
+
   <div class="instrument-index-card-infos">
     <div class="instrument-index-card-infos-content">
     <% if instrument.for_rent %>
