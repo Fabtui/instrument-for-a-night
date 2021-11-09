@@ -1,14 +1,14 @@
-.image-lightbox span{
+.lightbox-img span{
   display: flex;
   width: 100%;
   overflow: hidden;
 }
-.image-lightbox img{
+.lightbox-img img{
   width: 100%;
   vertical-align: middle;
   transition: all 0.3s ease;
 }
-.image-lightbox:hover img{
+.lightbox-img:hover img{
   transition: all 0.3s ease;
   cursor: pointer;
   transform: scale(1.1);
@@ -49,7 +49,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   z-index: 999;
-  padding: 4px;
+  padding: 8px;
   &:hover {
     color: black;
     transition: all 0.2s ease;

@@ -46,6 +46,6 @@ document.addEventListener('turbolinks:load', () => {
   calendarDisplay();
   checkoutAmount();
   instrumentLightbox();
-  // initMapbox();
-  // showMap();
+  initMapbox();
+  showMap();
 });

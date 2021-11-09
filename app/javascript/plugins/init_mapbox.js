@@ -5,7 +5,9 @@ const buildMap = (mapElement) => {
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
   return new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v10'
+    style: 'mapbox://styles/mapbox/streets-v10',
+    center: [3.9358236, 46.8659735],
+    zoom: 5
   });
 };
 
@@ -33,7 +35,9 @@ const initMapbox = () => {
     const map = buildMap(mapElement);
     const markers = JSON.parse(mapElement.dataset.markers);
     addMarkersToMap(map, markers);
-    fitMapToMarkers(map, markers);
+    if (markers.count < 2) {
+      fitMapToMarkers(map, markers);
+    }
     map.addControl(new mapboxgl.GeolocateControl({
       positionOptions: {
       enableHighAccuracy: true
