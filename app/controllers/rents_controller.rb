@@ -58,9 +58,7 @@ class RentsController < ApplicationController
 
   def destroy
     @rent = Rent.find(params[:id])
-    @instrument = Instrument.find(@rent.instrument_id)
-    @recipient = User.find(@instrument.user_id)
-    @user = current_user
+    define_params(@rent)
     define_conversation(@recipient)
     @rent.destroy
     Message.new.create_auto_cancel_message(@user, @recipient, @conversation, @instrument, @rent)
@@ -72,10 +70,16 @@ class RentsController < ApplicationController
   end
 
   def mark_has_paid
-    rent = Rent.find(params[:format])
-    rent.paid = true
-    rent.save
-    redirect_to rents_checkout_path
+    @rent = Rent.find(params[:format])
+    define_params(@rent)
+    define_conversation(@recipient)
+    @rent.paid = true
+    @rent.save
+    if @rent.save
+      Message.new.create_auto_paid_message(@user, @recipient, @conversation, @instrument, @rent)
+      redirect_to rents_checkout_path
+    else redirect_to user_rents_path(current_user)
+    end
   end
 
   private
@@ -90,5 +94,11 @@ class RentsController < ApplicationController
     else
       @conversation = Conversation.create!(sender_id: current_user.id, recipient_id: @recipient.id)
     end
+  end
+
+  def define_params(rent)
+    @instrument = Instrument.find(rent.instrument_id)
+    @recipient = User.find(@instrument.user_id)
+    @user = current_user
   end
 end

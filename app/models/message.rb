@@ -21,6 +21,13 @@ class Message < ApplicationRecord
     @message.save
   end
 
+  def create_auto_paid_message(user, recipient, conversation, instrument, rent)
+    set_variables(user, recipient, conversation, instrument, rent)
+    @body = "Hi #{@recipient.nickname}! I have paid for the rental of #{@instrument.brand} #{@instrument.name} from the #{@rent.start_time} to the #{@rent.end_time}."
+    @message = Message.new(user_id: @user.id, conversation_id: @conversation.id, body: @body)
+    @message.save
+  end
+
   private
 
   def set_variables(user, recipient, conversation, instrument, rent)
