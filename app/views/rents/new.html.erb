@@ -1,27 +1,31 @@
 <div class="sign-in-container">
-  <h1 id="price" data-price-per-day="<%=@instrument.price_per_day%>">Rent <%= @instrument.user.nickname %>'s <%= @instrument.brand %> <%= @instrument.name %></h1>
+  <div class="rent-new-container">
+    <h1 id="price" data-price-per-day="<%=@instrument.price_per_day%>">Rent <%= @instrument.user.nickname %>'s <%= @instrument.brand %> <%= @instrument.name %></h1>
 
-<%= simple_form_for [@instrument, @rent] do |f| %>
-     <%= f.input :start_time, label: false,
+  <%= simple_form_for [@instrument, @rent] do |f| %>
+      <%= f.input :start_time, label: false,
+                                as: :string,
+                                required: true,
+                                input_html: { id: "range_start", class: "d-none"} %>
+        <%= f.input :end_time, label: false,
                               as: :string,
                               required: true,
-                              input_html: { id: "range_start", class: "d-none"} %>
-      <%= f.input :end_time, label: false,
-                             as: :string,
-                             required: true,
-                             input_html: { id: "range_end", class: "d-none" } %>
-<div id="rent-price">
-  <h2 id='date-display' class='text-center'>Choose a date</h2>
-  <h1 class='text-center'>
-    <span id="price-preview">0</span>€ for <span id="number-of-days">0</span> day<span id="plurilize"></span>
-  </h1>
-</div>
-  <% if current_user %>
-    <%= f.submit 'Rent', class: "btn btn-primary" %>
-  <% else %>
-    <%= link_to "Login", new_user_session_path, class: "btn btn-primary" %>
-  <% end %>
-  <%= link_to 'Back', instruments_path, class: "btn btn-warning"  %>
-<% end %>
-  <div id="rent-form-div" data-rents="<%= @rents_dates.to_json %>"></div>
+                              input_html: { id: "range_end", class: "d-none" } %>
+  <div id="rent-price">
+    <h2 id='date-display' class='text-center'>Choose a date</h2>
+    <h1 class='text-center'>
+      <span id="price-preview">0</span>€ for <span id="number-of-days">0</span> day<span id="plurilize"></span>
+    </h1>
+  </div>
+  <div class="rent-new-action">
+    <% if current_user %>
+      <%= f.submit 'Rent', class: "btn btn-primary" %>
+    <% else %>
+      <%= link_to "Login", new_user_session_path, class: "btn btn-primary" %>
+    <% end %>
+      <%= link_to 'Back', instruments_path, class: "btn btn-warning"  %>
+    <% end %>
+  </div>
+    <div id="rent-form-div" data-rents="<%= @rents_dates.to_json %>"></div>
+  </div>
 </div>

@@ -1,24 +1,22 @@
 <div class="instrument-show-container">
   <div class="instrument-show-left">
-    <h1><%= @instrument.brand.capitalize %> <%= @instrument.name.capitalize %> <%= @instrument.year %></h1>
-    <h4><%= @instrument.instrument_type %></h4>
-    <h4><%= @instrument.description %></h4>
-    <% if !current_user.instruments.include?(@instrument) %>
-      <i class="far fa-envelope"></i> <%= link_to "Send a message to #{@instrument.user.nickname}", conversations_path(sender_id: current_user.id, recipient_id: @instrument.user.id), method: "post"%></h3>
-    <% else %>
-      <h3><%= @instrument.user.nickname%></h3>
+    <h1><%= @instrument.brand.upcase %> <%= @instrument.name.upcase %></h1>
+    <h2><%= @instrument.year %></h2>
+    <h5><%= @instrument.description %></h5>
+    <h6 id="google-map-link"><%= link_to "https://www.google.fr/maps/dir//#{@instrument.user.location}", target:"_blanck" do %>
+      <i class="fas fa-map-pin"></i> <%= @instrument.user.location %>
     <% end %>
-      <h4><%= @instrument.user.location %></h4>
-    <div class="instrument-index-card-infos-price">
-    <% unless current_user.instruments.include?(@instrument) %>
-      <%= link_to "Rent for me #{humanized_money_with_symbol(@instrument.price_per_day)} per day", new_instrument_rent_path(@instrument) %>
-    <% end %>
-    </div>
-    <div class="show-map">
-      <div id="map"
-          style="width: 90%; height: 100%;"
-          data-markers="<%= @markers.to_json %>"
-          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </h6>
+    <div class="instrument-show-actions">
+      <div class="instrument-show-message">
+        <% if !current_user.instruments.include?(@instrument) %>
+          <%= link_to "Send a message to #{@instrument.user.nickname}", conversations_path(sender_id: current_user.id, recipient_id: @instrument.user.id), method: "post"%></h3>
+        <% end %>
+      </div>
+      <div class="instrument-show-rent">
+      <% unless current_user.instruments.include?(@instrument) %>
+        <%= link_to "Rent me for #{humanized_money_with_symbol(@instrument.price_per_day)} per day", new_instrument_rent_path(@instrument), class:"rent-button" %>
+      <% end %>
       </div>
     </div>
   </div>
