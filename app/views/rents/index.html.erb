@@ -1,7 +1,7 @@
 <div class="calendar-container">
   <div class="calendar">
   <%= month_calendar(events: @all_rents) do |date, all_rents| %>
-    <%= date %>
+    <%= date.day %>
     <% all_rents.each do |rent| %>
     <% if @rents.include?(rent) %>
       <% owner = User.find(rent.instrument.user_id) %>
