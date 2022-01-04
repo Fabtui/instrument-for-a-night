@@ -24,7 +24,12 @@ class InstrumentsController < ApplicationController
     else
       @instruments = Instrument.all
     end
-    create_markers
+    # create_markers
+
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text { render partial: 'instruments/instruments_list', locals: { instruments: @instruments }, formats: [:html] }
+    end
   end
 
   def show

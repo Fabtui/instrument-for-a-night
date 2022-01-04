@@ -2,20 +2,20 @@
 
 <div class="instrument-index-big-container">
   <div class="instrument-index-result hidden-map-result">
+  <%= comment do %>
     <div class="map-show-button-container">
       <button class="btn btn-primary" id="show-map-button"><i class="fas fa-map-marked-alt"></i></button>
     </div>
-    <% if @instruments.count > 0 %>
-      <% @instruments.each do |instrument| %>
-       <%= render "instruments/instruments_index_card", instrument: instrument %>
-      <% end %>
-    <% else %>
-      <h1>No instrument found</h1>
-    <% end %>
+  <% end %>
+    <div class="instrument-index-result-instruments">
+      <%= render "instruments/instruments_list", instruments: @instruments %>
+    </div>
   </div>
+  <%= comment do %>
   <div id="map" class="map hidden-map"
       style="width: 40%; height: 90vh;"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
+  <% end %>
 </div>

@@ -23,6 +23,7 @@ import { initMapbox } from '../plugins/init_mapbox';
 import { showMap } from '../components/show_map';
 import { checkoutAmount } from '../components/checkout_amount';
 import { instrumentLightbox } from '../components/instrument_lightbox';
+import { ajaxSearch } from '../components/ajax_search';
 
 Rails.start()
 Turbolinks.start()
@@ -48,4 +49,5 @@ document.addEventListener('turbolinks:load', () => {
   instrumentLightbox();
   initMapbox();
   showMap();
+  ajaxSearch();
 });

@@ -1,0 +1,7 @@
+<% if @instruments.count > 0 %>
+  <% @instruments.each do |instrument| %>
+  <%= render "instruments/instruments_index_card", instrument: instrument %>
+  <% end %>
+<% else %>
+  <h1>No instrument found</h1>
+<% end %>
